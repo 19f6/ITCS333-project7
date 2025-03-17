@@ -1,10 +1,143 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Study Group Finder</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    
+    <header>
+        <h1>Course Reviews</h1>
+    </header>
+    <div class="main-container">
+        <div class="left-panel">
+            <div class="tabs">
+                <div class="tab active" data-tab="available">Reviews</div>
+            </div>
+            <!-- Filteration -->
+            <div class="filter-bar">
+                <select id="filter-college">
+                    <option value="">Select a college</option>
+                    <option value="IT">IT</option>
+                    <option value="Science">Science</option>
+                    <option value="Engineering">Engineering</option>
+                </select>
+                <select id="filter-course">
+                    <option value="">All Courses</option>
+                </select>
+                <!-- <select id="filter-location">
+                    <option value="">All Locations</option>
+                    <option value="Online">Online</option>
+                    <option value="In-person">In-person</option>
+                    <option value="Both">Both</option>
+                </select> -->
+                <input type="text" id="search" placeholder="Search by keyword...">
+            </div>
+
+            <!-- Groups -dummy data just for now :) -->
+            <div id="groups-container">
+                <div class="group-card">
+                    <div class="group-header">
+                        <h3 class="group-title">ITCS317</h3>
+                        <span class="group-subject">IT</span>
+                    </div>
+                    <div class="group-details">
+                        <!-- <p><strong>Location:</strong>In-Person</p> -->
+                        <!-- <p><strong>Members:</strong> 3/6</p> -->
+                        <p><strong>Description:</strong> Preparing for the ITCS317 midterm exam. We meet twice a week to review practice problems and lecture materials.</p>
+                    </div>
+                    <div class="stars">
+                        <span class="star">&#9733;</span>
+                        <span class="star">&#9733;</span>
+                        <span class="star">&#9733;</span>
+                        <span class="star">&#9733;</span>
+                        <span class="star">&#9733;</span>
+                      </div>
+                    <button class="join-button">Add you review</button>
+                </div>
+                
+                <div class="group-card">
+                    <div class="group-header">
+                        <h3 class="group-title">ITCS347</h3>
+                        <span class="group-subject">IT</span>
+                    </div>
+                    <div class="group-details">
+                        <!-- <p><strong>Location:</strong> In-person (Central Library, 3rd Floor)</p>
+                        <p><strong>Members:</strong> 4/8</p> -->
+                        <p><strong>Description:</strong> Working through algorithm practice problems and discussing solution approaches.</p>
+                        <div class="stars">
+                            <span class="star">&#9733;</span>
+                            <span class="star">&#9733;</span>
+                            <span class="star">&#9733;</span>
+                            <span class="star">&#9733;</span>
+                            <span class="star">&#9733;</span>
+                          </div>
+                    </div>
+                    <button class="join-button">Add you review</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Create Group -->
+        <div class="right-panel">
+            <h3>Create a Course Review</h3>
+            <form id="create-form">
+                <div>
+                    <label for="group-name">Course Name </label>
+                    <input type="text" id="group-name" placeholder="E.g., ITCS317" required>
+                </div>
+                <div>
+                    <label for="subject">College</label>
+                    <select id="subject" required>
+                        <option value="">Select a college</option>
+                        <option value="IT">IT</option>
+                        <option value="Science">Science</option>
+                        <option value="Engineering">Engineering</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="level">Course</label>
+                    <select id="level" required>
+                        <option value="">Select a course</option>
+                        <option value="ITCS333">ITCS333</option>
+                        <option value="ITCS325">ITCS325</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <!-- <div>
+                    <label for="location-type">Location</label>
+                    <select id="location-type">
+                        <option value="online">Online</option>
+                        <option value="in-person">In-person</option>
+                        <option value="Both">Both</option>
+                    </select>
+                    <input type="text" id="location" placeholder="Location details (if in-person)" style="margin-top: 10px;">
+                </div> -->
+                <div>
+                    <label for="description">review</label>
+                    <textarea id="description" rows="4" placeholder="Describe your study group, learning method, meeting frequency, etc."></textarea>
+                </div>
+                <!-- <div>
+                    <label for="max-members">Maximum Members</label>
+                    <input type="number" id="max-members" min="2" max="20" value="6">
+                </div> -->
+                <div>
+                    <label for="gender">Raiting</label>
+                    <div class="stars">
+                        <span class="star">&#9733;</span>
+                        <span class="star">&#9733;</span>
+                        <span class="star">&#9733;</span>
+                        <span class="star">&#9733;</span>
+                        <span class="star">&#9733;</span>
+                      </div>
+                </div>
+                <button type="submit">Create Study Group</button>
+            </form>
+        </div>
+    </div>
 </body>
 </html>
