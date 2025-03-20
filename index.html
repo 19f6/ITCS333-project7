@@ -6,6 +6,61 @@
     <title>Document</title>
 </head>
 <body>
+    <!-- nav -->
+    <div><h1>Student Marketplace</h1></div>
     
+
+    <!-- List -->
+     <div>
+     </div>
+
+
+     <!-- Form -->
+      <form action="" method="post">
+        <fieldset>
+            <h3>Form for Product Adding</h3>
+            <div>
+            <label for="product">Product Name: </label>
+            <br>
+            <input type="text" id="product" placeholder="Type the product's name.." required>
+            </div>
+            <div>
+                <label for="description">Description: </label>
+                <br>
+                <textarea id="description" placeholder="Describe Your Product.."></textarea>
+            </div>
+            <div>
+                <label for="price">Price: </label>
+                <br>
+                <input type="number" id="price" placeholder="Enter the price.." required>
+            </div>
+            
+            <div>
+                <label >Status of the Product: </label>
+                <br>
+                <label for="new">New</label>
+                <input type="radio" name="status" value="new">
+                <label for="used">Used</label>
+                <input type="radio" name="status" value="used">
+            </div>
+            <div>
+                <label for="image">Upload Images: </label>
+                <br>
+                <input type="file" id="image" >
+            </div>
+            <div>
+                <label for="contact">Contact info: </label>
+                <br>
+                <input type="text" id="contact" placeholder="Enter your contact information.." required>
+            </div>
+            <br>
+            <div>
+                <button type="submit">Add</button>
+                <input type="button" value="Cancel">
+            </div>
+        </fieldset>
+      </form>
+
+
 </body>
 </html>
