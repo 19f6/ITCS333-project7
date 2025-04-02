@@ -30,7 +30,7 @@ body {
 /* Title */
 .Title {
     text-align: center;
-    font-size: 30px;
+    font-size: 20px;
     font-weight: bold;
 }
 
@@ -92,6 +92,20 @@ body {
 .product-item .price {
     font-weight: bold;
     color: var(--secondary-color);
+}
+
+.rating {
+    color: gold;
+    font-size: 18px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.rating span {
+    font-size: 14px;
+    color: var(--text-dark);
 }
 
 /* Form on the Right Side */
