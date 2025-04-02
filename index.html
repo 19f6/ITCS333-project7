@@ -7,60 +7,48 @@
     <title>Document</title>
 </head>
 <body>
-    <!-- nav -->
+    <!-- Navigation Bar -->
     <div><h1>Student Marketplace</h1></div>
     
+    <!-- Main Content -->
+
+    <!--Prodect Form-->
+    <div class="form-container">
+        <form action="" method="post">
+            <h3>Form for Product Adding</h3>
+
+            <label for="product">Product Name: </label>
+            <input type="text" id="product" placeholder="Type the product's name.." required>
+            
+            <label for="description">Description: </label>
+            <textarea id="description" placeholder="Describe Your Product.."></textarea>
+            
+            <label for="price">Price: </label>
+            <input type="number" id="price" placeholder="Enter the price.." required>
+            
+            <label >Status of the Product: </label>
+            <label for="new">New</label>
+            <input type="radio" name="status" value="new">
+            <label for="used">Used</label>
+            <input type="radio" name="status" value="used">
+
+            <label for="image">Upload Images: </label>
+            <input type="file" id="image" >
+
+            <label for="contact">Contact info: </label>
+            <input type="text" id="contact" placeholder="Enter your contact information.." required>
+            
+            <button type="submit">Add</button>
+            <button type="button">Cancel</button>
+        </form>
+    </div>
 
     <!-- List -->
      <div>
      </div>
 
 
-     <!-- Form -->
-      <form action="" method="post">
-        <fieldset>
-            <h3>Form for Product Adding</h3>
-            <div>
-            <label for="product">Product Name: </label>
-            <br>
-            <input type="text" id="product" placeholder="Type the product's name.." required>
-            </div>
-            <div>
-                <label for="description">Description: </label>
-                <br>
-                <textarea id="description" placeholder="Describe Your Product.."></textarea>
-            </div>
-            <div>
-                <label for="price">Price: </label>
-                <br>
-                <input type="number" id="price" placeholder="Enter the price.." required>
-            </div>
-            
-            <div>
-                <label >Status of the Product: </label>
-                <br>
-                <label for="new">New</label>
-                <input type="radio" name="status" value="new">
-                <label for="used">Used</label>
-                <input type="radio" name="status" value="used">
-            </div>
-            <div>
-                <label for="image">Upload Images: </label>
-                <br>
-                <input type="file" id="image" >
-            </div>
-            <div>
-                <label for="contact">Contact info: </label>
-                <br>
-                <input type="text" id="contact" placeholder="Enter your contact information.." required>
-            </div>
-            <br>
-            <div>
-                <button type="submit">Add</button>
-                <button type="button">Cancel</button>
-            </div>
-        </fieldset>
-      </form>
+     
 
 
     <!---->
