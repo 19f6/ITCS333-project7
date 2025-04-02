@@ -14,12 +14,12 @@
         </div>
 
         <div class="nav-content">
-            <!-- Search Box (Left) -->
+            <!-- Search Box -->
             <div class="search-box">
                 <input type="text" placeholder="Search...">
             </div>
 
-            <!-- Filters (Right) -->
+            <!-- Filters -->
             <div class="filters">
                 <select>
                     <option>Category</option>
@@ -36,8 +36,8 @@
     </div>
     
     <!-- Main Content -->
-    <div class="form-container">
-        <!--Prodect Listing-->
+    <div class="container">
+        <!--Prodect Listing -->
         <div class="product-list">
             <div class="product-item">
                 <h2>Calculus 1 Book</h2>
@@ -55,34 +55,35 @@
             </div>
         </div>
 
-        <!--Prodect Form-->
-        <form action="" method="post">
-            <h3>Form for Product Adding</h3>
+        <!--Prodect Form -->
+        <div class="form-container">
+           <h3>Form for Product Adding</h3>
+           <form action="" method="post">
+              <label for="product">Product Name: </label>
+              <input type="text" id="product" placeholder="Type the product's name.." required>
+            
+              <label for="description">Description: </label>
+              <textarea id="description" placeholder="Describe Your Product.."></textarea>
+            
+              <label for="price">Price: </label>
+              <input type="number" id="price" placeholder="Enter the price.." required>
+            
+              <label >Status of the Product: </label>
+              <label for="new">New</label>
+              <input type="radio" name="status" value="new">
+              <label for="used">Used</label>
+              <input type="radio" name="status" value="used">
 
-            <label for="product">Product Name: </label>
-            <input type="text" id="product" placeholder="Type the product's name.." required>
-            
-            <label for="description">Description: </label>
-            <textarea id="description" placeholder="Describe Your Product.."></textarea>
-            
-            <label for="price">Price: </label>
-            <input type="number" id="price" placeholder="Enter the price.." required>
-            
-            <label >Status of the Product: </label>
-            <label for="new">New</label>
-            <input type="radio" name="status" value="new">
-            <label for="used">Used</label>
-            <input type="radio" name="status" value="used">
+              <label for="image">Upload Images: </label>
+              <input type="file" id="image" >
 
-            <label for="image">Upload Images: </label>
-            <input type="file" id="image" >
-
-            <label for="contact">Contact info: </label>
-            <input type="text" id="contact" placeholder="Enter your contact information.." required>
+              <label for="contact">Contact info: </label>
+              <input type="text" id="contact" placeholder="Enter your contact information.." required>
             
-            <button type="submit">Add</button>
-            <button type="button">Cancel</button>
-        </form>
+              <button type="submit">Add</button>
+              <button type="button">Cancel</button>
+           </form>
+        </div>
     </div>
 
     <!-- Pagination -->
@@ -96,6 +97,6 @@
         <button>&gt;</button>
         <button>&raquo;</button>
     </div>
-    
+
 </body>
 </html>
