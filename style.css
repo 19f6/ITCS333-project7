@@ -1,28 +1,152 @@
-form {
+:root {
+    --primary-color: #9C9FE5;       
+    --secondary-color: #7c7fd9;     
+    --background-light: #f8fafc;    
+    --text-light: #ffffff;          
+    --text-dark: #0f172a;          
+    --border-color: #cbd5e1;        
+    --card-bg: #ffffff;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--background-light);
+    color: var(--text-dark);
+    padding: 0;
+    margin: 0;
+}
+
+/* Navigation Bar */
+.navbar {
+    display: flex;
+    flex-direction: column; /* Makes the Title at the top */
+    align-items: center;
+    padding: 15px;
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    justify-content: space-between;
+}
+
+/* Title */
+.Title {
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+/* Search & Filters container */
+.nav-content {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 800px;
+}
+
+/* Search Box */
+.search-box {
+    flex: 1;
+    max-width: 300px;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+}
+
+/* Filters */
+.filters {
+    display: flex;
+    gap: 10px;
+}
+
+.filters select {
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+}
+
+/* Layout: Product List (Left) & Form (Right) */
+.container {
+    display: flex;
+    justify-content: space-between;
+    margin: 15px;
+    margin-top: 20px;
+}
+
+/* Product List */
+.product-list {
+    width: 65%;
+}
+
+.product-item {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+}
+
+.product-item .price {
+    font-weight: bold;
+    color: var(--secondary-color);
+}
+
+/* Form on the Right Side */
+.form-container {
     width: 30%;
-    height: 100%;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    padding: 15px;
+    border-radius: 8px;
 }
 
-textarea {
-    width: 350px;
-    height: 100px;
-    font-size: 16px;
+form label{
+    display: block;
+    margin-top: 10px;
+    font-weight:300;
 }
 
-label {
-    font-size: 17px;
-    padding: 4px;
-    
-}
-
-input {
-    font-size: 14px;
-    padding: 4px;
+input, textarea {
+    width: 428px;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
 }
 
 button {
-    width: 90px;
-    height: 30px;
-    background-color: #9C9FE5;
-    color: #ffffff;
+    margin-top: 10px;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: var(--secondary-color);
+    color: var(--text-light);
+}
+
+button:hover {
+    background-color: var(--primary-color);
+}
+
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pagination button {
+    margin: 5px;
+    padding: 8px 12px;
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.pagination .active {
+    background-color: var(--secondary-color);
 }
