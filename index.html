@@ -40,7 +40,9 @@
         <!--Prodect Listing -->
         <div class="product-list">
             <div class="product-item">
-                <h2>Calculus 1</h2>
+                <img src="images/Calculus Book 1.jpg" alt="Calculus Book 1" class="product-image">
+                <div class="product-details">
+                <h4>Calculus 1</h4>
                 <p>A great book to explain the basics of calculus.</p>
                 <p class="price">Price: 22BD</p>
                 <div class="rating">
@@ -48,22 +50,28 @@
                     <span>(20)</span>
                 </div>
                 <button>View Details</button>
+                </div>
             </div>
 
             <div class="product-item">
-                <h2>Introduction to Algorithms by Thomas H. Cormen</h2>
+                <img src="images/Introduction to Algorithms by Thomas H. Cormen.jpg" alt="Introduction to Algorithms by Thomas H. Cormen" class="product-image">
+                <div class="product-details">
+                <h4>Introduction to Algorithms by Thomas H. Cormen</h4>
                 <p>A comprehensive update of the leading algorithms text, with new material on 
-                    matchings in bipartite graphs, online algorithms, machine learning, and other topics.</p>
+                    matchings in bipartite graphs.</p>
                 <p class="price">Price: 30BD</p>
                 <div class="rating">
                     ★★★
                     <span>(55)</span>
                 </div>
                 <button>View Details</button>
+                </div>
             </div>
 
             <div class="product-item">
-                <h2>Artificial Intelligence: A Modern Approach</h2>
+                <img src="images/artificialintelligence-Amodernapproach.jpg" alt="Artificial Intelligence: A Modern Approach" class="product-image">
+                <div class="product-details">
+                <h4>Artificial Intelligence: A Modern Approach</h4>
                 <p>A detailed look into AI concepts like machine learning, neural networks, and robotics.</p>
                 <p class="price">Price: 45BD</p>
                 <div class="rating">
@@ -71,10 +79,13 @@
                     <span>(79)</span>
                 </div>
                 <button>View Details</button>
+                </div>
             </div>
         
             <div class="product-item">
-                <h2>Database Systems: The Complete Book</h2>
+                <img src="images/DatabaseSystems-TheCompleteBook.jpg" alt="Database Systems: The Complete Book" class="product-image">
+                <div class="product-details">
+                <h4>Database Systems: The Complete Book</h4>
                 <p>Comprehensive coverage of database design, SQL, and NoSQL systems.</p>
                 <p class="price">Price: 35BD</p>
                 <div class="rating">
@@ -82,10 +93,13 @@
                     <span>(65)</span>
                 </div>
                 <button>View Details</button>
+                </div>
             </div>
         
             <div class="product-item">
-                <h2>Operating System Concepts</h2>
+                <img src="images/OperatingSystemConcepts.jpg" alt="Operating System Concepts" class="product-image">
+                <div class="product-details">
+                <h4>Operating System Concepts</h4>
                 <p>Learn the core principles of modern operating systems, including Linux and Windows.</p>
                 <p class="price">Price: 38BD</p>
                 <div class="rating">
@@ -93,10 +107,13 @@
                     <span>(25)</span>
                 </div>
                 <button>View Details</button>
+                </div>
             </div>
         
             <div class="product-item">
-                <h2>Computer Networking: A Top-Down Approach</h2>
+                <img src="images/ComputerNetworking-ATop-DownApproach.jpg" alt="Computer Networking: A Top-Down Approach" class="product-image">
+                <div class="product-details">
+                <h4>Computer Networking: A Top-Down Approach</h4>
                 <p>Discover how the internet and networking protocols function from the application layer down.</p>
                 <p class="price">Price: 40BD</p>
                 <div class="rating">
@@ -104,10 +121,13 @@
                     <span>(52)</span>
                 </div>
                 <button>View Details</button>
+                </div>
             </div>
         
             <div class="product-item">
-                <h2>Introduction to Machine Learning</h2>
+                <img src="images/IntroductiontoMachineLearning.jpg" alt="Introduction to Machine Learning" class="product-image">
+                <div class="product-details">
+                <h4>Introduction to Machine Learning</h4>
                 <p>An essential guide for beginners in machine learning, covering regression, clustering, and deep learning.</p>
                 <p class="price">Price: 50BD</p>
                 <div class="rating">
@@ -115,10 +135,13 @@
                     <span>(300)</span>
                 </div>
                 <button>View Details</button>
+                </div>
             </div>
         
             <div class="product-item">
-                <h2>Software Engineering: A Practitioner's Approach</h2>
+                <img src="images/SoftwareEngineering-APractitioner'sApproach.jpg" alt="Software Engineering: A Practitioner's Approach" class="product-image">
+                <div class="product-details">
+                <h4>Software Engineering: A Practitioner's Approach</h4>
                 <p>Everything about software development methodologies, from Agile to DevOps.</p>
                 <p class="price">Price: 42BD</p>
                 <div class="rating">
@@ -126,12 +149,13 @@
                     <span>(45)</span>
                 </div>
                 <button>View Details</button>
+                </div>
             </div>
         </div>
 
         <!--Prodect Form -->
         <div class="form-container">
-           <h3>Form for Product Adding</h3>
+           <h3>Create a New Product</h3>
            <form action="" method="post">
               <label for="product">Product Name: </label>
               <input type="text" id="product" placeholder="Type the product's name.." required>
@@ -154,8 +178,10 @@
               <label for="contact">Contact info: </label>
               <input type="text" id="contact" placeholder="Enter your contact information.." required>
             
-              <button type="submit">Add</button>
-              <button type="button">Cancel</button>
+              <div class="button-group">
+                <button type="submit">Add</button>
+                <button type="button">Cancel</button>
+              </div>
            </form>
         </div>
     </div>
