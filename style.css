@@ -79,14 +79,27 @@ body {
 /* Product List */
 .product-list {
     width: 65%;
+    display:inline-table;
+    gap: 10px;
+    max-height: 600px;
 }
 
 .product-item {
+    display: grid;
+    align-items:center;
+    gap: 20px;
     background-color: var(--card-bg);
     border: 1px solid var(--border-color);
     padding: 15px;
     margin-bottom: 10px;
     border-radius: 8px;
+    max-width: 250px;
+    font-size: 14px;
+}
+
+.product-image {
+    width: 250px;
+    height: 300px;
 }
 
 .product-item .price {
@@ -125,7 +138,7 @@ form label{
 }
 
 input, textarea {
-    width: 428px;
+    width: 97%;
     padding: 8px;
     margin-top: 5px;
     border: 1px solid var(--border-color);
@@ -140,6 +153,12 @@ button {
     cursor: pointer;
     background-color: var(--secondary-color);
     color: var(--text-light);
+}
+
+.button-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
 }
 
 button:hover {
