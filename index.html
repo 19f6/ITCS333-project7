@@ -10,9 +10,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <h1>Study Group Finder</h1>
-    </header>
+
+    <h1>Study Group Finder</h1>
+    <div class="nav-bar">
+
+    </div>
+
     <div class="main-container">
         <div class="left-panel">
             <div class="tabs">
@@ -40,6 +43,19 @@
 
             <!-- Groups -dummy data just for now :) -->
             <div id="groups-container">
+                <div class="group-card">
+                    <div class="group-header">
+                        <h3 class="group-title">ITCS317 Midterm Prep</h3>
+                        <span class="group-subject">ITCS317</span>
+                    </div>
+                    <div class="group-details">
+                        <p><strong>Location:</strong> Online (Teams)</p>
+                        <p><strong>Members:</strong> 3/6</p>
+                        <p><strong>Description:</strong> Preparing for the ITCS317 midterm exam. We meet twice a week to review practice problems and lecture materials.</p>
+                    </div>
+                    <button class="join-button">Join Group</button>
+                </div>
+
                 <div class="group-card">
                     <div class="group-header">
                         <h3 class="group-title">ITCS317 Midterm Prep</h3>
@@ -120,8 +136,22 @@
                     </select>
                 </div>
                 <button type="submit">Create Study Group</button>
+                <button type="submit">Cancel</button>
             </form>
         </div>
     </div>
+
+        <!-- Pagination -->
+        <div class="pagination">
+            <a href="#">&laquo;</a> 
+            <a class="active"href="#">1</a>
+            <a href="#">2</a>
+            <a href="#">3</a>
+            <a href="#">4</a>
+            <a href="#">5</a>
+            <a href="#">6</a>
+            <a href="#">&raquo;</a>
+        </div>
+    
 </body>
 </html>
