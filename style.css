@@ -111,14 +111,8 @@ body {
     margin-bottom: 10px;
     border-radius: 8px;
     max-width: 200px;
-    height: 500px;
+    height: 460px;
     font-size: 12px;
-}
-
-.product-details {
-    display: flex;
-    flex-direction: column;
-    justify-content:start;
 }
 
 .product-image {
