@@ -130,20 +130,24 @@ body {
     display: flex;
     flex-direction: column;
     align-items:center;
-    justify-content:space-between;
+    justify-content: space-between;
     background-color: var(--card-bg);
     border: 1px solid var(--border-color);
     padding: 15px;
-    margin-bottom: 10px;
     border-radius: 8px;
     max-width: 200px;
-    height: 460px;
+    max-height: 100%;
     font-size: 12px;
 }
 
+.product-details {
+    flex: 1;
+    margin: 10,0,10,0 px;
+}
+
 .product-image {
-    width: 200px;
-    height: 250px;
+    width: 100%;
+    height: 230px;
 }
 
 .product-item .price {
@@ -157,12 +161,16 @@ body {
     font-weight: bold;
     display: flex;
     align-items: center;
-    gap: 10px;
 }
 
 .rating span {
     font-size: 14px;
     color: var(--text-dark);
+}
+
+.card-button {
+    width: 200px;
+    margin-top: auto;
 }
 
 /* Form on the Right Side */
@@ -172,7 +180,7 @@ body {
     border: 1px solid var(--border-color);
     padding: 15px;
     border-radius: 8px;
-    max-height: 600px;
+    max-height: 700px;
     font-size: 14px;
     margin: 10px;
 }
@@ -193,8 +201,8 @@ input, textarea {
     resize: none;
 }
 
-.card-button {
-    width: 200px;
+textarea {
+    height: 70px;
 }
 
 button {
