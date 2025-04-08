@@ -1,324 +1,408 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
     <title>Document</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-</head>
-<body>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
     <div class="container">
-    <!-- Navigation Bar -->
-    <div class="navbar">
+      <!-- Navigation Bar -->
+      <div class="navbar">
         <div class="navbar-links">
-            <div class="navbar-box">
-            <h5>Events Calendar</h5>
-            <h5>Study Group Finder</h5>
-            <h5>Course Reviews</h5>
-            <h5>Course Notes</h5>
-            <h5>Compus News</h5>
-            <h5>Student Marketplace</h5>
-            </div>
-            <div class="navbar-auth">
-                <h5>Sign Up</h5>
-                <h5>Sing In</h5>
-            </div>
+          <a href="#">Events Calendar</a>
+          <a href="#">Study Group Finder</a>
+          <a href="#">Course Reviews</a>
+          <a href="#">Course Notes</a>
+          <a href="#">Compus News</a>
+          <a href="#">Student Marketplace</a>
+          <div class="navbar-auth">
+            <button>Sing In</button>
+          </div>
         </div>
         <div class="navbar-title">
-            <h1>Student Marketplace</h1>
+          <h1>Student Marketplace</h1>
         </div>
 
         <div class="nav-content">
-            <!-- Search Box -->
-            <div class="search-box">
-                <input type="text" placeholder="Search...">
-            </div>
+          <!-- Search Box -->
+          <div class="search-box">
+            <input type="text" placeholder="Search..." />
+          </div>
 
-            <!-- Filters -->
-            <div class="filters">
-                <div>
-                <select>
-                    <option disabled selected>Category</option>
-                    <option>Math</option>
-                    <option>Art</option>
-                    <option>Science</option>
-                    <option>Technology</option>
-                </select>
-                </div>
-                <div>
-                <select>
-                    <option disabled selected>Price Range</option>
-                    <option>$0 - $50</option>
-                    <option>$50 - $100</option>
-                    <option>$100 - $200</option>
-                    <option>$200+</option>
-                </select>
-                </div>
-                <div>
-                <select>
-                    <option disabled selected>Condition</option>
-                    <option>New</option>
-                    <option>Used - Like New</option>
-                    <option>Used - Good</option>
-                    <option>Used - Acceptable</option>
-                </select>
-                </div>
+          <!-- Filters -->
+          <div class="filters">
+            <div>
+              <select>
+                <option disabled selected>Category</option>
+                <option>Math</option>
+                <option>Art</option>
+                <option>Science</option>
+                <option>Technology</option>
+              </select>
             </div>
-
+            <div>
+              <select>
+                <option disabled selected>Price Range</option>
+                <option>$0 - $50</option>
+                <option>$50 - $100</option>
+                <option>$100 - $200</option>
+                <option>$200+</option>
+              </select>
+            </div>
+            <div>
+              <select>
+                <option disabled selected>Condition</option>
+                <option>New</option>
+                <option>Used - Like New</option>
+                <option>Used - Good</option>
+                <option>Used - Acceptable</option>
+              </select>
+            </div>
+          </div>
         </div>
-    </div>
-    
-    <!-- Main Content -->
-    
-        <div class="container-list-form">   
+      </div>
+
+      <!-- Main Content -->
+
+      <div class="container-list-form">
         <!--Prodect Listing -->
         <div class="product-list">
-            <div class="product-item">
-                <img src="images/Calculus Book 1.jpg" alt="Calculus Book 1" class="product-image">
-                <div class="product-details">
-                <h4>Calculus 1</h4>
-                <p>A great book to explain the basics of calculus.</p>
-                <p class="price">Price: 22BD</p>
-                <div class="rating">
-                    ★★★★☆
-                    <span>(20)</span>
-                </div>
-                </div>
-                <div>
-                <button class="card-button">View Details</button>
-                </div>
-                
+          <div class="product-item">
+            <img
+              src="images/Calculus Book 1.jpg"
+              alt="Calculus Book 1"
+              class="product-image"
+            />
+            <div class="product-details">
+              <h4>Calculus 1</h4>
+              <p>A great book to explain the basics of calculus.</p>
+              <p class="price">Price: 22BD</p>
+              <div class="rating">
+                ★★★★☆
+                <span>(20)</span>
+              </div>
             </div>
+            <div>
+              <button class="card-button">View Details</button>
+            </div>
+          </div>
 
-            <div class="product-item">
-                <img src="images/Introduction to Algorithms by Thomas H. Cormen.jpg" alt="Introduction to Algorithms by Thomas H. Cormen" class="product-image">
-                <div class="product-details">
-                <h4>Introduction to Algorithms by Thomas H. Cormen</h4>
-                <p>A comprehensive update of the leading algorithms text, with new material.</p>
-                <p class="price">Price: 30BD</p>
-                <div class="rating">
-                    ★★★☆☆
-                    <span>(55)</span>
-                </div>
-                </div>
-                <div>
-                <button class="card-button">View Details</button>
-                </div>
-                
+          <div class="product-item">
+            <img
+              src="images/Introduction to Algorithms by Thomas H. Cormen.jpg"
+              alt="Introduction to Algorithms by Thomas H. Cormen"
+              class="product-image"
+            />
+            <div class="product-details">
+              <h4>Introduction to Algorithms by Thomas H. Cormen</h4>
+              <p>
+                A comprehensive update of the leading algorithms text, with new
+                material.
+              </p>
+              <p class="price">Price: 30BD</p>
+              <div class="rating">
+                ★★★☆☆
+                <span>(55)</span>
+              </div>
             </div>
+            <div>
+              <button class="card-button">View Details</button>
+            </div>
+          </div>
 
-            <div class="product-item">
-                <img src="images/artificialintelligence-Amodernapproach.jpg" alt="Artificial Intelligence: A Modern Approach" class="product-image">
-                <div class="product-details">
-                <h4>Artificial Intelligence: A Modern Approach</h4>
-                <p>A detailed look into AI concepts like machine learning and robotics.</p>
-                <p class="price">Price: 45BD</p>
-                <div class="rating">
-                    ★★★★☆
-                    <span>(79)</span>
-                </div>
-                </div>
-                <div>
-                <button class="card-button">View Details</button>
-                </div>
-                
+          <div class="product-item">
+            <img
+              src="images/artificialintelligence-Amodernapproach.jpg"
+              alt="Artificial Intelligence: A Modern Approach"
+              class="product-image"
+            />
+            <div class="product-details">
+              <h4>Artificial Intelligence: A Modern Approach</h4>
+              <p>
+                A detailed look into AI concepts like machine learning and
+                robotics.
+              </p>
+              <p class="price">Price: 45BD</p>
+              <div class="rating">
+                ★★★★☆
+                <span>(79)</span>
+              </div>
             </div>
-        
-            <div class="product-item">
-                <img src="images/DatabaseSystems-TheCompleteBook.jpg" alt="Database Systems: The Complete Book" class="product-image">
-                <div class="product-details">
-                <h4>Database Systems: The Complete Book</h4>
-                <p>Comprehensive coverage of database design, SQL, and NoSQL systems.</p>
-                <p class="price">Price: 35BD</p>
-                <div class="rating">
-                    ★★★☆☆
-                    <span>(65)</span>
-                </div>
-                </div>
-                <div>
-                <button class="card-button">View Details</button>
-                </div>
-                
+            <div>
+              <button class="card-button">View Details</button>
             </div>
-        
-            <div class="product-item">
-                <img src="images/OperatingSystemConcepts.jpg" alt="Operating System Concepts" class="product-image">
-                <div class="product-details">
-                <h4>Operating System Concepts</h4>
-                <p>Learn the core principles of modern operating systems, including Linux and Windows.</p>
-                <p class="price">Price: 38BD</p>
-                <div class="rating">
-                    ★★★★★
-                    <span>(25)</span>
-                </div>
-                </div>
-                <div>
-                <button class="card-button">View Details</button>
-                </div>
-                
-            </div>
-        
-            <div class="product-item">
-                <img src="images/ComputerNetworking-ATop-DownApproach.jpg" alt="Computer Networking: A Top-Down Approach" class="product-image">
-                <div class="product-details">
-                <h4>Computer Networking: A Top-Down Approach</h4>
-                <p>Discover how the internet and networking protocols function from the application layer down.</p>
-                <p class="price">Price: 40BD</p>
-                <div class="rating">
-                    ★★★★★
-                    <span>(52)</span>
-                </div>
-                </div>
-                <div>
-                <button class="card-button">View Details</button>
-                </div>
-                
-            </div>
-        
-            <div class="product-item">
-                <img src="images/IntroductiontoMachineLearning.jpg" alt="Introduction to Machine Learning" class="product-image">
-                <div class="product-details">
-                <h4>Introduction to Machine Learning</h4>
-                <p>An essential guide for beginners in machine learning, clustering, and deep learning.</p>
-                <p class="price">Price: 50BD</p>
-                <div class="rating">
-                    ★★★☆☆
-                    <span>(300)</span>
-                </div>
-                </div>
-                <div>
-                <button class="card-button">View Details</button>
-                </div>
-                
-            </div>
-        
-            <div class="product-item">
-                <img src="images/SoftwareEngineering-APractitioner'sApproach.jpg" alt="Software Engineering: A Practitioner's Approach" class="product-image">
-                <div class="product-details">
-                <h4>Software Engineering: A Practitioner's Approach</h4>
-                <p>Everything about software development methodologies, from Agile to DevOps.</p>
-                <p class="price">Price: 42BD</p>
-                <div class="rating">
-                    ★★★★☆
-                    <span>(45)</span>
-                </div>
-                </div>
-                <div>
-                <button class="card-button">View Details</button>
-                </div>
-            </div>
+          </div>
 
-<div class="product-item">
-    <img src="images/WaysofSeeing.jpg" alt="Ways of Seeing" class="product-image">
-    <div class="product-details">
-    <h4>Ways of Seeing</h4>
-    <p>Analyzes how we perceive visual art in a cultural context.</p>
-    <p class="price">Price: 20BD</p>
-    <div class="rating">
-        ★★★☆☆
-        <span>(60)</span>
-    </div>
-    </div>
-    <div>
-        <button class="card-button">View Details</button>
-        </div>
-</div>
+          <div class="product-item">
+            <img
+              src="images/DatabaseSystems-TheCompleteBook.jpg"
+              alt="Database Systems: The Complete Book"
+              class="product-image"
+            />
+            <div class="product-details">
+              <h4>Database Systems: The Complete Book</h4>
+              <p>
+                Comprehensive coverage of database design, SQL, and NoSQL
+                systems.
+              </p>
+              <p class="price">Price: 35BD</p>
+              <div class="rating">
+                ★★★☆☆
+                <span>(65)</span>
+              </div>
+            </div>
+            <div>
+              <button class="card-button">View Details</button>
+            </div>
+          </div>
 
-<div class="product-item">
-    <img src="images/ColorandLight.jpg" alt="Color and Light" class="product-image">
-    <div class="product-details">
-    <h4>Color and Light</h4>
-    <p>A guide to color theory and realistic painting techniques.</p>
-    <p class="price">Price: 32BD</p>
-    <div class="rating">
-        ★★★★☆
-        <span>(41)</span>
-    </div>
-    </div>
-    <div>
-        <button class="card-button">View Details</button>
-        </div>
-</div>
+          <div class="product-item">
+            <img
+              src="images/OperatingSystemConcepts.jpg"
+              alt="Operating System Concepts"
+              class="product-image"
+            />
+            <div class="product-details">
+              <h4>Operating System Concepts</h4>
+              <p>
+                Learn the core principles of modern operating systems, including
+                Linux and Windows.
+              </p>
+              <p class="price">Price: 38BD</p>
+              <div class="rating">
+                ★★★★★
+                <span>(25)</span>
+              </div>
+            </div>
+            <div>
+              <button class="card-button">View Details</button>
+            </div>
+          </div>
 
-<div class="product-item">
-    <img src="images/ThePrincetonCompaniontoMathematics.jpg" alt="The Princeton Companion to Mathematics" class="product-image">
-    <div class="product-details">
-    <h4>The Princeton Companion to Mathematics</h4>
-    <p>A comprehensive reference covering key areas of mathematics.</p>
-    <p class="price">Price: 50BD</p>
-    <div class="rating">
-        ★★★★☆
-        <span>(33)</span>
-    </div>
-    </div>
-    <div>
-        <button class="card-button">View Details</button>
-        </div>
-</div>
+          <div class="product-item">
+            <img
+              src="images/ComputerNetworking-ATop-DownApproach.jpg"
+              alt="Computer Networking: A Top-Down Approach"
+              class="product-image"
+            />
+            <div class="product-details">
+              <h4>Computer Networking: A Top-Down Approach</h4>
+              <p>
+                Discover how the internet and networking protocols function from
+                the application layer down.
+              </p>
+              <p class="price">Price: 40BD</p>
+              <div class="rating">
+                ★★★★★
+                <span>(52)</span>
+              </div>
+            </div>
+            <div>
+              <button class="card-button">View Details</button>
+            </div>
+          </div>
 
-<div class="product-item">
-    <img src="images/Gödel,Escher,Bach.jpg" alt="Gödel, Escher, Bach" class="product-image">
-    <div class="product-details">
-    <h4>Gödel, Escher, Bach</h4>
-    <p>Explores connections between logic, art, and music in a brilliant way.</p>
-    <p class="price">Price: 36BD</p>
-    <div class="rating">
-        ★★★★★
-        <span>(59)</span>
-    </div>
-    </div>
-    <div>
-        <button class="card-button">View Details</button>
-        </div>
-</div>
+          <div class="product-item">
+            <img
+              src="images/IntroductiontoMachineLearning.jpg"
+              alt="Introduction to Machine Learning"
+              class="product-image"
+            />
+            <div class="product-details">
+              <h4>Introduction to Machine Learning</h4>
+              <p>
+                An essential guide for beginners in machine learning,
+                clustering, and deep learning.
+              </p>
+              <p class="price">Price: 50BD</p>
+              <div class="rating">
+                ★★★☆☆
+                <span>(300)</span>
+              </div>
+            </div>
+            <div>
+              <button class="card-button">View Details</button>
+            </div>
+          </div>
+
+          <div class="product-item">
+            <img
+              src="images/SoftwareEngineering-APractitioner'sApproach.jpg"
+              alt="Software Engineering: A Practitioner's Approach"
+              class="product-image"
+            />
+            <div class="product-details">
+              <h4>Software Engineering: A Practitioner's Approach</h4>
+              <p>
+                Everything about software development methodologies, from Agile
+                to DevOps.
+              </p>
+              <p class="price">Price: 42BD</p>
+              <div class="rating">
+                ★★★★☆
+                <span>(45)</span>
+              </div>
+            </div>
+            <div>
+              <button class="card-button">View Details</button>
+            </div>
+          </div>
+
+          <div class="product-item">
+            <img
+              src="images/WaysofSeeing.jpg"
+              alt="Ways of Seeing"
+              class="product-image"
+            />
+            <div class="product-details">
+              <h4>Ways of Seeing</h4>
+              <p>Analyzes how we perceive visual art in a cultural context.</p>
+              <p class="price">Price: 20BD</p>
+              <div class="rating">
+                ★★★☆☆
+                <span>(60)</span>
+              </div>
+            </div>
+            <div>
+              <button class="card-button">View Details</button>
+            </div>
+          </div>
+
+          <div class="product-item">
+            <img
+              src="images/ColorandLight.jpg"
+              alt="Color and Light"
+              class="product-image"
+            />
+            <div class="product-details">
+              <h4>Color and Light</h4>
+              <p>A guide to color theory and realistic painting techniques.</p>
+              <p class="price">Price: 32BD</p>
+              <div class="rating">
+                ★★★★☆
+                <span>(41)</span>
+              </div>
+            </div>
+            <div>
+              <button class="card-button">View Details</button>
+            </div>
+          </div>
+
+          <div class="product-item">
+            <img
+              src="images/ThePrincetonCompaniontoMathematics.jpg"
+              alt="The Princeton Companion to Mathematics"
+              class="product-image"
+            />
+            <div class="product-details">
+              <h4>The Princeton Companion to Mathematics</h4>
+              <p>
+                A comprehensive reference covering key areas of mathematics.
+              </p>
+              <p class="price">Price: 50BD</p>
+              <div class="rating">
+                ★★★★☆
+                <span>(33)</span>
+              </div>
+            </div>
+            <div>
+              <button class="card-button">View Details</button>
+            </div>
+          </div>
+
+          <div class="product-item">
+            <img
+              src="images/Gödel,Escher,Bach.jpg"
+              alt="Gödel, Escher, Bach"
+              class="product-image"
+            />
+            <div class="product-details">
+              <h4>Gödel, Escher, Bach</h4>
+              <p>
+                Explores connections between logic, art, and music in a
+                brilliant way.
+              </p>
+              <p class="price">Price: 36BD</p>
+              <div class="rating">
+                ★★★★★
+                <span>(59)</span>
+              </div>
+            </div>
+            <div>
+              <button class="card-button">View Details</button>
+            </div>
+          </div>
         </div>
 
         <!--Prodect Form -->
         <div class="form-container">
-           <h3>Create a New Product</h3>
-           <form action="" method="post">
-              <label for="product">Product Name: </label>
-              <input type="text" id="product" placeholder="Type the product's name.." required>
-            
-              <label for="description">Description: </label>
-              <textarea id="description" placeholder="Describe Your Product.."></textarea>
-            
-              <label for="price">Price: </label>
-              <input type="number" id="price" placeholder="Enter the price.." required>
-            
-              <label >Status of the Product: </label>
-              <label for="new">New</label>
-              <input type="radio" name="status" value="new">
-              <label for="used">Used</label>
-              <input type="radio" name="status" value="used">
+          <h3>Create a New Product</h3>
+          <form action="" method="post">
+            <label for="product">Product Name: </label>
+            <input
+              type="text"
+              id="product"
+              placeholder="Type the product's name.."
+              required
+            />
 
-              <label for="image">Upload Images: </label>
-              <input type="file" id="image" >
+            <label for="description">Description: </label>
+            <textarea
+              id="description"
+              placeholder="Describe Your Product.."
+            ></textarea>
 
-              <label for="contact">Contact info: </label>
-              <input type="text" id="contact" placeholder="Enter your contact information.." required>
-            
-              <div class="button-group">
-                <button class="add" type="submit">Add</button>
-                <button class="cancel" type="button">Cancel</button>
-              </div>
-           </form>
+            <label for="price">Price: </label>
+            <input
+              type="number"
+              id="price"
+              placeholder="Enter the price.."
+              required
+            />
+
+            <label>Status of the Product: </label>
+            <label for="new">New</label>
+            <input type="radio" name="status" value="new" />
+            <label for="used">Used</label>
+            <input type="radio" name="status" value="used" />
+
+            <label for="image">Upload Images: </label>
+            <input type="file" id="image" />
+
+            <label for="contact">Contact info: </label>
+            <input
+              type="text"
+              id="contact"
+              placeholder="Enter your contact information.."
+              required
+            />
+
+            <div class="button-group">
+              <button class="add" type="submit">Add</button>
+              <button class="cancel" type="button">Cancel</button>
+            </div>
+          </form>
         </div>
-    </div>
+      </div>
 
-    <!-- Pagination -->
-    <div class="pagination">
-        <button class="pagination-button">&laquo;</button>
-        <button class="pagination-button">&lt;</button>
-        <button  class="active">1</button>
-        <button class="pagination-button">2</button>
-        <button class="pagination-button">3</button>
-        <button class="pagination-button">4</button>
-        <button class="pagination-button">&gt;</button>
-        <button class="pagination-button">&raquo;</button>
+      <!-- Pagination -->
+      <div class="pagination">
+        <button>&laquo;</button>
+        <button>&lt;</button>
+        <button class="active">1</button>
+        <button>2</button>
+        <button>3</button>
+        <button>4</button>
+        <button>&gt;</button>
+        <button>&raquo;</button>
+      </div>
     </div>
-    </div> 
-
-</body>
+  </body>
 </html>
