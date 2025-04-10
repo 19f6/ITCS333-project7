@@ -15,7 +15,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
 }
 
 #navbar {
@@ -23,6 +22,7 @@
     width: 100%;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
     padding: 1rem 3rem;
     margin: 0;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
@@ -64,6 +64,7 @@ body {
     background-color: var(--background-light);
     color: var(--text-dark);
     line-height: 1.6;
+    font-family: 'Poppins', sans-serif;
 }
 
 .study-group{
@@ -113,6 +114,7 @@ h1 {
 
 .filter-bar {
     display: flex;
+    flex-wrap: wrap;
     gap: 1rem;
     margin-bottom: 1.5rem;
 }
@@ -243,4 +245,85 @@ h1 {
 }
 
 
-  
+/* media queries for responsive deign */
+
+@media (max-width: 992px) {
+    .main-container {
+        flex-direction: column;
+        padding: 0 1rem;
+    }
+
+    .left-panel, .right-panel {
+        width: 100%;
+    }
+
+    .filter-bar {
+        flex-direction: column;
+    }
+
+    .filter-bar select, 
+    .filter-bar input {
+        width: 100%;
+    }
+
+    h1 {
+        margin-left: 1rem;
+    }
+
+    .right-panel {
+        margin-top: 2rem;
+    }
+}
+
+@media (max-width: 600px) {
+    #navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1rem;
+    }
+
+    #navbar .links {
+        flex-direction: column;
+        width: 100%;
+        gap: 1rem;
+        margin-top: 1rem;
+    }
+
+    #navbar .links li {
+        width: 100%;
+    }
+
+    #navbar .links a {
+        display: block;
+        width: 100%;
+        padding: 0.5rem;
+    }
+
+    .tab {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .group-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .group-subject {
+        font-size: 0.8rem;
+    }
+
+    .join-button {
+        width: 100%;
+    }
+
+    .pagination {
+        flex-wrap: wrap;
+        gap: 5px;
+    }
+
+    #create-form button[type="submit"] {
+        width: 100%;
+    }
+}
