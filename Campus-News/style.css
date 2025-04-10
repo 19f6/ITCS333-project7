@@ -80,7 +80,7 @@ width: 400px;
 .main-panel {
     display: flex;
     background: var(--secondary-color);
-    padding: 1.5rem;
+    padding: 25px;
     border-radius: 9px;
     gap: 2rem;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
@@ -101,8 +101,10 @@ width: 400px;
 }
 
 #img2{
-    height: 100px;
-    width: 100px;
+    height: 192px;
+    width: 187px;
+    border-radius: 0;
+    margin-top: 30px;
 }
 .bottom-panel {
     background: var(--primary-color);
@@ -111,7 +113,9 @@ width: 400px;
     align-items: center;
     margin-bottom: 1rem;
     padding: 1.2rem;
-    height: fit-content;
+    height: 400px;
+    width: 823px;
+    border-radius: 10px;
 }
 
 .panel-header {
@@ -125,12 +129,17 @@ width: 400px;
 margin-left: 3px;
 }
 
+.panel-header but1 {
+    margin-left: 25px;
+}
+
 .News-card {
     background: var(--card-bg);
     color: var(--text-light);
-    padding: 0.25rem 0.75rem;
-    border-radius: 20px;
+    width: 466px;
+    height: 300px;
     font-size: 0.9rem;
+    margin-left: 10px;
 }
 
 /* Right Panel */
