@@ -86,6 +86,11 @@ width: 300px;
     height: fit-content;
 }
 
+.main-panel h3 {
+    font-size: 22px;
+    text-align: start;
+}
+
 #img2{
     height: 100px;
     width: 100px;
