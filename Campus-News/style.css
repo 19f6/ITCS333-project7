@@ -127,6 +127,8 @@ width: 400px;
 
 .panel-header h3 {
 margin-left: 3px;
+margin-bottom: 255px;
+text-align: start;
 }
 
 .panel-header but1 {
@@ -136,8 +138,8 @@ margin-left: 3px;
 .News-card {
     background: var(--card-bg);
     color: var(--text-light);
-    width: 466px;
-    height: 300px;
+    width: 500px;
+    height: 200px;
     font-size: 0.9rem;
     margin-left: 10px;
 }
