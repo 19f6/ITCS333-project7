@@ -72,7 +72,7 @@ h1 {
 }
 
 #img1 {
-height: 300px;
+height: 200px;
 width: 300px;
 }
 
@@ -89,6 +89,11 @@ width: 300px;
 .main-panel h3 {
     font-size: 22px;
     text-align: start;
+}
+
+.main-panel p {
+    font-size: 18px;
+    text-align: left;
 }
 
 #img2{
