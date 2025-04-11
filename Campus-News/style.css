@@ -125,11 +125,17 @@ width: 400px;
     margin-bottom: 15px;
 }
 
-.panel-header h3 {
-margin-left: 3px;
-margin-bottom: 255px;
-text-align: start;
+#title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+    white-space: nowrap;
+    font-size: 24px;
+    margin-bottom: 320px;
 }
+
+
 
 .panel-header but1 {
     margin-bottom: 300px;
