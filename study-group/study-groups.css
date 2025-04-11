@@ -173,6 +173,11 @@ h1 {
     background: var(--secondary-color);
 }
 
+.group-link{
+    text-decoration: none;
+    color: inherit;
+}
+
 /* Right Panel */
 .right-panel {
     flex: 1;
