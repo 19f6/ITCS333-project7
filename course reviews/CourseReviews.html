@@ -10,18 +10,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header class="header bar">
-        <h1 class="site tittle">Course Reviews</h1>
-        <nav class="nav-links">
-            <a href="">Course Reviews</a>
-            <a href="StudyGroupFinder.html">Study Group Finder</a>
-            <a href="CourseNotes.html">Course Notes</a>
-            <a href="CampusNews.html">Campus News</a>
-            <a href="StudentMarketplace.html">Student Marketplace</a>
-        </nav>
-    
-    </header>
+  <nav id="navbar">
+        <a class="home" href="../index.html">UniHub</a>
+        <ul class="links">
+          <li><a href="#">Calendar</a></li>
+          <li><a href="../study-group/study-groups.html">Study Groups</a></li>
+          <li><a href="../course reviews/CourseReviews.html">Course Reviews</a></li>
+          <li><a href="#">News</a></li>
+          <li><a href="#">Club Activities</a></li>
+          <li><a href="#">Marketplace</a></li>
+        </ul>
+    </nav> 
+      <h1>Course Reviews</h1>
     <div class="main-container">
+     
         <div class="left-panel">
             <div class="tabs">
                 <div class="tab active" data-tab="available">Reviews</div>
@@ -39,6 +41,7 @@
                 <input type="text" id="search" placeholder="Search by keyword...">
             </div>
             <div id="course-container">
+                <a class="course-link" href="course.html">
                 <div class="course-card">
                     <div class="course-header">
                         <h3 class="course-title">ITCS316</h3>
@@ -58,8 +61,9 @@
                         <span class="star">&#9733;</span>
                       </div>
                     <button class="join-button">Add you review</button>
-                </div>
                 
+                </div>
+                </a>
                 <div class="course-card">
                     <div class="course-header">
                         <h3 class="course-title">ITCS347</h3>
@@ -84,8 +88,8 @@
                     </div>
                     <div class="course-details">
                         <p><strong>Description:</strong> General Physics I
-                            Units and measurements; brief review of vectors; Newton’s laws of motion; projectile motion; work and energy;
-                            impulse and momentum; rotational dynamics; equilibrium of a rigid body; periodic motion.</p>
+                            Units and measurements, brief review of vectors; Newton’s laws of motion, projectile motion, work and energy,
+                            impulse and momentum, rotational dynamics, equilibrium of a rigid body, periodic motion.</p>
                         <div class="stars">
                             <span>&#9733;</span>
                             <span>&#9733;</span>
