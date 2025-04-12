@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Course Note</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+            extend: {
+             fontFamily: {
+                sans: ['Poppins', 'sans-serif'],
+              },
+              colors: {
+                primary: '#9C9FE5',
+                secondary: '#7c7fd9',
+                background: '#f8fafc',
+               text: {
+                  light: '#ffffff',
+                  dark: '#0f172a'
+                },
+               border: '#cbd5e1',
+               card: '#ffffff'
+              }
+            }
+          }
+        }
+</script>
+  </head>
+  <body class="bg-gray-100 text-gray-800">
+    <header class="bg-white shadow p-4">
+      <div class="max-w-4xl mx-auto">
+        <h1 class="text-2xl font-bold text-primary">Add New Course Note</h1>
+      </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-4 py-8">
+      <form class="bg-white p-6 rounded shadow space-y-6">
+        <div>
+          <label for="course" class="block font-medium mb-1">Course Name <span class="text-red-500">*</span></label>
+          <input type="text" id="course" name="course" placeholder="e.g., CY351" required class="w-full border px-4 py-2 rounded"/>
+        </div>
+        <div>
+          <label for="title" class="block font-medium mb-1">Note Title <span class="text-red-500">*</span></label>
+          <input type="text" id="title" name="title" placeholder="e.g., Introduction to Cryptograph" required class="w-full border px-4 py-2 rounded"/>
+        </div>
+        <div>
+          <label for="summary" class="block font-medium mb-1">Summary</label>
+          <textarea
+            id="summary"
+            name="summary"
+            placeholder="Short summary of the note"
+            rows="3"
+            class="w-full border px-4 py-2 rounded">
+          </textarea>
+        </div>
+        <div>
+          <label for="content" class="block font-medium mb-1">Note Content <span class="text-red-500">*</span></label>
+          <textarea
+            id="content"
+            name="content"
+            placeholder="Write your full notes here..."
+            rows="6"
+            required
+            class="w-full border px-4 py-2 rounded"
+          ></textarea>
+        </div>
+        <div class="flex justify-between">
+          <a href="index.html" class="text-blue-600 hover:underline">← Back to Listing</a>
+          <div class="space-x-2">
+            <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Submit</button>
+            <button type="reset" class="bg-gray-200 px-4 py-2 rounded hover:bg-gray-300">Cancel</button>
+          </div>
+        </div>
+      </form>
+    </main>
+  </body>
+</html>

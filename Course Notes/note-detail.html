@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Note Details</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+            extend: {
+             fontFamily: {
+                sans: ['Poppins', 'sans-serif'],
+              },
+              colors: {
+                primary: '#9C9FE5',
+                secondary: '#7c7fd9',
+                background: '#f8fafc',
+               text: {
+                  light: '#ffffff',
+                  dark: '#0f172a'
+                },
+               border: '#cbd5e1',
+               card: '#ffffff'
+              }
+            }
+          }
+        }
+</script>
+  </head>
+  <body class="bg-gray-100 text-gray-800">
+    <header class="bg-white shadow p-4">
+      <div class="max-w-4xl mx-auto">
+        <h1 class="text-2xl font-bold text-primary">Course Note Detail</h1>
+      </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-4 py-8 space-y-6">
+      <article class="bg-white p-6 rounded shadow">
+        <h2 class="text-xl font-semibold mb-1">
+          CS113 - Week 1: Java Basics
+        </h2>
+        <p class="text-sm text-gray-500 mb-4">Posted on Feb 9, 2025</p>
+        <p class="text-gray-700 mb-4">
+          This week's lecture covered the basics of java language including syntax, main method, data types, and...
+        </p>
+        <div class="flex justify-end space-x-2">
+          <button class="px-4 py-2 bg-yellow-400 text-white rounded hover:bg-yellow-500">Edit</button>
+          <button class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600">Delete</button>
+        </div>
+      </article>
+
+      <article class="bg-white p-6 rounded shadow">
+        <h2 class="text-xl font-semibold mb-1">
+          CS333 - Week 1: HTML Basics
+        </h2>
+        <p class="text-sm text-gray-500 mb-4">Posted on Feb 9, 2025</p>
+        <p class="text-gray-700 mb-4">
+          This week's lecture covered the basics of html language including syntax , tags, and...
+        </p>
+        <div class="flex justify-end space-x-2">
+          <button class="px-4 py-2 bg-yellow-400 text-white rounded hover:bg-yellow-500">Edit</button>
+          <button class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600">Delete</button>
+        </div>
+      </article>
+
+      <section class="bg-white p-6 rounded shadow">
+        <h3 class="text-lg font-semibold mb-4">Comments</h3>
+        <div class="border-b pb-4 mb-4">
+          <p class="font-medium">Reem K.</p>
+          <p class="text-sm text-gray-600">
+            Thanks! This helped me understand the topic much better.
+          </p>
+        </div>
+        <div class="border-b pb-4 mb-4">
+          <p class="font-medium">Omr A.</p>
+          <p class="text-sm text-gray-600">
+            Would you add the code example from class?
+          </p>
+        </div>
+        <form>
+          <label for="comment" class="block font-medium mb-1">Add a comment</label>
+          <textarea id="comment" rows="3" placeholder="Write a comment..." class="w-full border px-4 py-2 rounded mb-2"></textarea>
+          <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Post Comment</button>
+        </form>
+      </section>
+
+      <div>
+        <a href="index.html" class="text-blue-600 hover:underline">← Back to Listing</a>
+      </div>
+    </main>
+  </body>
+</html>
