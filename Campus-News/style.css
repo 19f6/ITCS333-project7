@@ -38,11 +38,13 @@ h1 {
     padding: 2rem;
     max-width: 1400px;
     margin: 0 auto;
+    margin-right: 95px;
 }
 
 /* Left Panel */
 .left-panel {
-    flex: 3;
+    flex: 2.5;
+    margin-right: 1rem;
 }
 
 .filter-bar {
@@ -109,24 +111,25 @@ width: 400px;
 }
 .bottom-panel {
     background: var(--primary-color);
-    padding: 20px;
+    padding: 15px 20px;
     width: 100%;
     max-width: 800px;
     height: auto;
+    margin-top: 2rem;
 }
 
 .panel-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 
 #title {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100px;
+    padding: 10px 0;
     white-space: nowrap;
     font-size: 24px;
     margin: 0;
@@ -172,22 +175,6 @@ width: 400px;
     transform: scale(1.02);
 }
 
-.scroll-hint {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 24px;
-    color: var(--border-color);
-    pointer-events: none;
-}
-
-.scroll-hint.left {
-    left: -5px;
-}
-
-.scroll-hint.right {
-    right: -5px;
-}
 
 /* Right Panel */
 .right-panel {
@@ -197,24 +184,55 @@ width: 400px;
     display: flex;
     flex-direction: column;
     gap: 15px;
+    margin-left: 1rem;
 }
 
-#img3{
-    height: 200px;
-    width: 200px;
-}
 
 .Events-card {
-    flex: 1;
+    display: flex;
+    align-items: flex-start;
     bottom: 300px;
     gap: 1rem;
     padding: 1rem;
-    margin-bottom: 15px;
+    margin-bottom: 1.5px;
     padding-bottom: 1.5rem;
     background: var(--card-bg);
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     border-radius: 6px;
-    width: 723px;
+    width: 555px;
+    height: 225px;
+}
+
+.Events-card img {
+    width: 200px;
+    height: 155px;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.Events-card-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+}
+
+.Events-card-content p {
+    margin: 0 0 0.5rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text-dark);
+    line-height: 1.4;
+}
+
+.Events-card-content .tag {
+    display: inline-block;
+    background-color: var(--border-color);
+    color: var(--text-dark);
+    padding: 4px 8px;
+    font-size: 0.75rem;
+    border-radius: 12px;
+    width: fit-content;
 }
 
 .pagination {
