@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Group Finder</title>
+    <link rel="stylesheet" href="study-groups.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav id="navbar">
+        <a class="home" href="../index.html">UniHub</a>
+        <ul class="links">
+          <li><a href="#">Calendar</a></li>
+          <li><a href="../study-group/study-groups.html">Study Groups</a></li>
+          <li><a href="../course reviews/CourseReviews.html">Course Reviews</a></li>
+          <li><a href="#">News</a></li>
+          <li><a href="#">Club Activities</a></li>
+          <li><a href="#">Marketplace</a></li>
+        </ul>
+    </nav>
+    
+    <div class="study-group">
+  
+        <h1>Study Group Finder</h1>
+
+        <div class="main-container">
+            <div class="left-panel">
+                <div class="tabs">
+                    <div class="tab active" data-tab="available">Available Groups</div>
+                </div>
+                <!-- Filteration -->
+                <div class="filter-bar">
+                    <select id="filter-college">
+                        <option value="">Select a college</option>
+                        <option value="IT">IT</option>
+                        <option value="Science">Science</option>
+                        <option value="Engineering">Engineering</option>
+                    </select>
+                    <select id="filter-course">
+                        <option value="">All Courses</option>
+                    </select>
+                    <select id="filter-location">
+                        <option value="">All Locations</option>
+                        <option value="Online">Online</option>
+                        <option value="In-person">In-person</option>
+                        <option value="Both">Both</option>
+                    </select>
+                    <input type="text" id="search" placeholder="Search by keyword...">
+                </div>
+
+                <!-- Groups -dummy data just for now :) -->
+                <div id="groups-container">
+                    <a  class="group-link" href="group-details.html">
+                        <div class="group-card">
+                            <div class="group-header">
+                                <h3 class="group-title">ITCS333 Practice</h3>
+                                <span class="group-subject">ITCS333</span>
+                            </div>
+                            <div class="group-details">
+                                <p><strong>Location:</strong> In-person (IT Library, 2nd Floor)</p>
+                                <p><strong>Members:</strong> 9/15</p>
+                                <p><strong>Description:</strong> This group is for discussing and practing course material, sharing ideas and knowledge.</p>
+                            </div>
+                            <button class="join-button">Join Group</button>
+                        </div>
+                    </a>
+
+                    <a  class="group-link" href="group-details.html">
+                        <div class="group-card">
+                            <div class="group-header">
+                                <h3 class="group-title">ITCS317 Midterm Prep</h3>
+                                <span class="group-subject">ITCS317</span>
+                            </div>
+                            <div class="group-details">
+                                <p><strong>Location:</strong> Online (Teams)</p>
+                                <p><strong>Members:</strong> 3/6</p>
+                                <p><strong>Description:</strong> Preparing for the ITCS317 midterm exam. We meet twice a week to review practice problems and lecture materials.</p>
+                            </div>
+                            <button class="join-button">Join Group</button>
+                        </div>
+                    </a>
+                    
+                    <div class="group-card">
+                        <div class="group-header">
+                            <h3 class="group-title">Algorithm Study</h3>
+                            <span class="group-subject">ITCS347</span>
+                        </div>
+                        <div class="group-details">
+                            <p><strong>Location:</strong> In-person (Central Library, 3rd Floor)</p>
+                            <p><strong>Members:</strong> 4/8</p>
+                            <p><strong>Description:</strong> Working through algorithm practice problems and discussing solution approaches.</p>
+                        </div>
+                        <button class="join-button">Join Group</button>
+                    </div>
+                </div>
+                <!-- Pagination -->
+                <div class="pagination">
+                    <a href="#">&laquo;</a> 
+                    <a class="active"href="#">1</a>
+                    <a href="#">2</a>
+                    <a href="#">3</a>
+                    <a href="#">4</a>
+                    <a href="#">5</a>
+                    <a href="#">6</a>
+                    <a href="#">&raquo;</a>
+                </div>
+            </div>
+
+            <!-- Create Group -->
+            <div class="right-panel">
+                <h3>Create a Study Group</h3>
+                <form id="create-form">
+                    <div>
+                        <label for="group-name" class="required-label">Group Name</label>
+                        <input type="text" id="group-name" placeholder="E.g., ITCS317 Midterm prep" required>
+                    </div>
+                    <div>
+                        <label for="subject" class="required-label">College</label>
+                        <select id="subject" required>
+                            <option value="">Select a college</option>
+                            <option value="IT">IT</option>
+                            <option value="Science">Science</option>
+                            <option value="Engineering">Engineering</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="level" class="required-label">Course</label>
+                        <select id="level" required>
+                            <option value="">Select a course</option>
+                            <option value="ITCS333">ITCS333</option>
+                            <option value="ITCS325">ITCS325</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="location-type" class="required-label">Location</label>
+                        <select id="location-type">
+                            <option value="online">Online</option>
+                            <option value="in-person">In-person</option>
+                            <option value="Both">Both</option>
+                        </select>
+                        <input type="text" id="location" placeholder="Location details (if in-person)" style="margin-top: 10px;">
+                    </div>
+                    <div>
+                        <label for="description" class="required-label">Description</label>
+                        <textarea id="description" rows="4" placeholder="Describe your study group, learning method, meeting frequency, etc."></textarea>
+                    </div>
+                    <div>
+                        <label for="max-members" >Maximum Members</label>
+                        <input type="number" id="max-members" min="2" max="20" value="6">
+                    </div>
+                    <div>
+                        <label for="gender">Gender Preference</label>
+                        <select id="gender">
+                            <option value="any">Any</option>
+                            <option value="male">Male Only</option>
+                            <option value="female">Female Only</option>
+                        </select>
+                    </div>
+                    <button type="submit">Create Study Group</button>
+                    <button type="submit">Cancel</button>
+                </form>
+            </div>
+
+            
+        </div>
+
+        
+
+    </div>
+    
+</body>
+</html>
