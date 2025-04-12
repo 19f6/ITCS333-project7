@@ -235,6 +235,10 @@ width: 400px;
     width: fit-content;
 }
 
+.Events-card:hover {
+    transform: scale(1.02);
+}
+
 .pagination {
     display: flex;
     justify-content: flex-start;
