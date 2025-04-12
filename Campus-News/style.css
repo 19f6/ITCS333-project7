@@ -159,6 +159,10 @@ width: 400px;
     scroll-behavior: smooth;
 }
 
+.News-scroller a {
+    text-decoration: none;
+}
+
 
 .News-card {
     background: var(--card-bg);
@@ -185,6 +189,10 @@ width: 400px;
     flex-direction: column;
     gap: 15px;
     margin-left: 1rem;
+}
+
+.right-panel a {
+    text-decoration: none;
 }
 
 
