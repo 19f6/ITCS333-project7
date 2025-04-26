@@ -1,151 +1,129 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Study Group Finder</title>
-    <link rel="stylesheet" href="CourseReviews.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Course Reviews</title>
+  <link rel="stylesheet" href="CourseReviews.css">
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <nav id="navbar">
-        <a class="home" href="../index.html">UniHub</a>
-        <ul class="links">
-          <li><a href="../event calander/event.html">Calendar</a></li>
-          <li><a href="../study-group/study-groups.html">Study Groups</a></li>
-          <li><a href="../course reviews/CourseReviews.html">Course Reviews</a></li>
-          <li><a href="../Campus-News/index.html">News</a></li>
-          <li><a href="../Course Notes/index.html">Notes</a></li>
-          <li><a href="#">Marketplace</a></li>
+
+<body class="bg-[var(--background-light)] text-[var(--text-dark)]">
+
+    <nav id="navbar" class="flex justify-between items-center flex-wrap p-4 lg:px-16 bg-[var(--primary-color)] shadow-md">
+        <a class="home text-white text-2xl font-bold" href="../index.html">UniHub</a>
+        <ul id="nav-links" class="links flex gap-4 lg:gap-8 list-none">
+          <li><a class="text-white hover:text-[var(--secondary-color)]" href="../event calander/event.html">Calendar</a></li>
+          <li><a class="text-white hover:text-[var(--secondary-color)]" href="../study-group/study-groups.html">Study Groups</a></li>
+          <li><a class="text-white hover:text-[var(--secondary-color)]" href="../course reviews/CourseReviews.html">Course Reviews</a></li>
+          <li><a class="text-white hover:text-[var(--secondary-color)]" href="../Campus-News/index.html">News</a></li>
+          <li><a class="text-white hover:text-[var(--secondary-color)]" href="../Course Notes/index.html">Notes</a></li>
+          <li><a class="text-white hover:text-[var(--secondary-color)]" href="#">Marketplace</a></li>
         </ul>
-    </nav>
-    
-      <h1>Course Reviews</h1>
-    <div class="main-container">
-     
-        <div class="left-panel">
-            <div class="tabs">
-                <div class="tab active" data-tab="available">Reviews</div>
-            </div>
-            <div class="filter-bar">
-                <select id="filter-college">
-                    <option value="">Select a college</option>
-                    <option value="IT">IT</option>
-                    <option value="Science">Science</option>
-                    <option value="Engineering">Engineering</option>
-                </select>
-                <select id="filter-course">
-                    <option value="">All Courses</option>
-                </select>
-                <input type="text" id="search" placeholder="Search by keyword...">
-            </div>
-            <div id="course-container">
-                <a class="course-link" href="course.html">
-                <div class="course-card">
-                    <div class="course-header">
-                        <h3 class="course-title">ITCS316</h3>
-                        <span class="course-subject">IT</span>
-                    </div>
-                    <div class="course-details">
-                        <p><strong>Description:</strong> Human-Computer Interaction
-                            This course covers techniques used to analyze and design Human-Computer Interaction (HCI) systems. Topics
-                            include user interface design methods, social interactions, interface evaluation, human capabilities, interface
-                            technology, GUI programming concepts.</p>
-                    </div>
-                    <div class="stars">
-                        <span>&#9733;</span>
-                        <span>&#9733;</span>
-                        <span class="star">&#9733;</span>
-                        <span class="star">&#9733;</span>
-                        <span class="star">&#9733;</span>
-                      </div>
-                    <button class="join-button">Add you review</button>
-                
-                </div>
-                </a>
-                <div class="course-card">
-                    <div class="course-header">
-                        <h3 class="course-title">ITCS347</h3>
-                        <span class="course-subject">IT</span>
-                    </div>
-                    <div class="course-details">
-                        <p><strong>Description:</strong> Working through algorithm practice problems and discussing solution approaches.Working through algorithm practice problems and discussing solution approaches.</p>
-                        <div class="stars">
-                            <span>&#9733;</span>
-                            <span>&#9733;</span>
-                            <span>&#9733;</span>
-                            <span class="star">&#9733;</span>
-                            <span class="star">&#9733;</span>
-                          </div>
-                    </div>
-                    <button class="join-button">Add you review</button>
-                </div>
-                <div class="course-card">
-                    <div class="course-header">
-                        <h3 class="course-title">PHYSICS101</h3>
-                        <span class="course-subject">Science</span>
-                    </div>
-                    <div class="course-details">
-                        <p><strong>Description:</strong> General Physics I
-                            Units and measurements, brief review of vectors; Newton’s laws of motion, projectile motion, work and energy,
-                            impulse and momentum, rotational dynamics, equilibrium of a rigid body, periodic motion.</p>
-                        <div class="stars">
-                            <span>&#9733;</span>
-                            <span>&#9733;</span>
-                            <span>&#9733;</span>
-                            <span>&#9733;</span>
-                            <span class="star">&#9733;</span>
-                          </div>
-                    </div>
-                    <button class="join-button">Add you review</button>
-                </div>
-            </div>
+      </nav>
+      
+
+
+
+  <!-- Page Title -->
+  <h1 class="text-2xl font-bold my-6 ml-8">Course Reviews</h1>
+
+  <!-- Main Container -->
+  <div class="main-container flex flex-col lg:flex-row gap-8 p-4 lg:p-8 max-w-7xl mx-auto">
+
+    <!-- Left Panel -->
+    <div class="left-panell w-full lg:w-2/3 flex flex-col">
+      
+      <!-- Tabs -->
+      <div class="tabs flex border-b-2 border-[var(--border-color)] mb-4">
+        <div class="tab active cursor-pointer p-4 font-semibold border-b-2 border-[var(--primary-color)]">Reviews</div>
+      </div>
+
+      <!-- Filter Bar -->
+      <div class="filter-bar flex flex-col sm:flex-row gap-4 mb-6">
+        <select id="filter-college" class="p-2 border rounded flex-1">
+          <option value="">Select a college</option>
+          <option value="IT">IT</option>
+          <option value="Science">Science</option>
+          <option value="Engineering">Engineering</option>
+        </select>
+        <select id="filter-course" class="p-2 border rounded flex-1">
+          <option value="">All Courses</option>
+        </select>
+        <input id="search" type="text" class="p-2 border rounded flex-1" placeholder="Search by keyword...">
+      </div>
+
+      <!-- Courses Container -->
+      <div id="course-container" class="flex flex-col gap-6">
+        <!-- Courses will be dynamically loaded here -->
+      </div>
+
+    </div>
+
+    <!-- Right Panel (Form) -->
+    <div class="right-panell w-full lg:w-1/3 bg-[var(--card-bg)] rounded-lg shadow-md p-6">
+      <h3 class="text-xl font-semibold mb-4">Create a Course Review</h3>
+      <form id="create-form" class="flex flex-col gap-4">
+
+        <div>
+          <label for="course-name" class="block mb-1">Course Name</label>
+          <input type="text" id="course-name" class="w-full p-2 border rounded" placeholder="E.g., ITCS317" required>
         </div>
 
-        <div class="right-panel">
-            <h3>Create a Course Review</h3>
-            <form id="create-form">
-                <div>
-                    <label for="course-name">Course Name </label>
-                    <input type="text" id="course-name" placeholder="E.g., ITCS317" required>
-                </div>
-                <div>
-                    <label for="subject">College</label>
-                    <select id="subject" required>
-                        <option value="">Select a college</option>
-                        <option value="IT">IT</option>
-                        <option value="Science">Science</option>
-                        <option value="Engineering">Engineering</option>
-                    </select>
-                </div>
-                <div>
-                    <label for="level">Course</label>
-                    <select id="level" required>
-                        <option value="">Select a course</option>
-                        <option value="ITCS333">ITCS333</option>
-                        <option value="ITCS325">ITCS325</option>
-                        <option value="Other">Other</option>
-                    </select>
-                </div>
-                <div>
-                    <label for="description">review</label>
-                    <textarea id="description" rows="4" placeholder=""></textarea>
-                </div>
-                <div>
-                    <label for="gender">Raiting</label>
-                    <div class="stars">
-                        <span class="star">&#9733;</span>
-                        <span class="star">&#9733;</span>
-                        <span class="star">&#9733;</span>
-                        <span class="star">&#9733;</span>
-                        <span class="star">&#9733;</span>
-                      </div>
-                </div>
-                <button type="submit">Create Course Rivew</button>
-            </form>
+        <div>
+          <label for="subject" class="block mb-1">College</label>
+          <select id="subject" class="w-full p-2 border rounded" required>
+            <option value="">Select a college</option>
+            <option value="IT">IT</option>
+            <option value="Science">Science</option>
+            <option value="Engineering">Engineering</option>
+          </select>
         </div>
+
+        <div>
+          <label for="level" class="block mb-1">Course</label>
+          <select id="level" class="w-full p-2 border rounded" required>
+            <option value="">Select a course</option>
+            <option value="ITCS333">ITCS333</option>
+            <option value="ITCS325">ITCS325</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="description" class="block mb-1">Review</label>
+          <textarea id="description" rows="4" class="w-full p-2 border rounded" placeholder="Write your review..." required></textarea>
+        </div>
+
+ <!-- Rating Stars -->
+<div class="stars flex gap-1 mt-2" id="rating-stars">
+    <input type="radio" name="rating" id="star-5" class="hidden" value="5">
+    <label for="star-5">&#9733;</label>
+  
+    <input type="radio" name="rating" id="star-4" class="hidden" value="4">
+    <label for="star-4">&#9733;</label>
+  
+    <input type="radio" name="rating" id="star-3" class="hidden" value="3">
+    <label for="star-3">&#9733;</label>
+  
+    <input type="radio" name="rating" id="star-2" class="hidden" value="2">
+    <label for="star-2">&#9733;</label>
+  
+    <input type="radio" name="rating" id="star-1" class="hidden" value="1">
+    <label for="star-1">&#9733;</label>
+  </div>
+  
+          
+
+        <button type="submit" class="bg-[var(--primary-color)] hover:bg-[var(--secondary-color)] text-white py-2 rounded font-semibold">
+          Create Course Review
+        </button>
+
+      </form>
     </div>
+
+  </div>
+
+  <script src="review.js"></script>
 </body>
 </html>

@@ -40,13 +40,67 @@ body {
     text-decoration: none;
 }
 
-#navbar .links {
+/* General styling for the navbar */
+#navbar {
     display: flex;
-    list-style: none;
-    padding: 0;
-    margin: 0;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 1rem;
+    background-color: var(--primary-color);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  #navbar .home {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+  }
+  
+  /* Styling for navbar links */
+  #nav-links {
+    display: flex;
     gap: 2rem;
-}
+    list-style: none;
+  }
+  
+  #nav-links li a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  #nav-links li a:hover {
+    color: var(--secondary-color);
+  }
+  
+  /* Mobile styling */
+  @media (max-width: 1024px) {
+    #nav-links {
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    #nav-links li {
+      flex: 1 1 33%;  /* Ensures that each link takes up 1/3 of the width */
+      text-align: center;
+    }
+  }
+  
+  /* Larger screen styling */
+  @media (min-width: 1024px) {
+    #nav-links {
+      display: flex;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+    #nav-links li {
+      text-align: left;
+    }
+  }
+  
 
 #navbar .links li {
     position: relative;
@@ -201,10 +255,35 @@ h1 {
 #create-form button[type="submit"]:hover {
     background: var(--secondary-color);
 }
-.stars {
-    display: flex;
-    font-size: 30px;
+/* Hide radio buttons but still keep them functional */
+input[type="radio"].hidden {
+    display: none;
   }
-.star {
-    color: #ddd;
- }
+  
+  /* Style labels to appear as stars */
+  label {
+    color: #ccc; /* Default gray color for unselected stars */
+    transition: color 0.2s;
+    font-size: 2rem; /* Adjust font size for the stars */
+    margin-left: 4px; /* Reduce space between stars */
+    cursor: pointer;
+  }
+  
+  /* Arrange stars in reverse order (right to left) */
+  #rating-stars {
+    direction: rtl; /* Right to Left */
+    display: flex; /* Make stars align horizontally */
+    justify-content: center; /* Center the stars horizontally */
+    gap: 5px; /* Add space between the stars */
+  }
+  
+  /* Change color of stars when the radio button is checked */
+  input[type="radio"]:checked + label {
+    color: #f59e0b; /* Gold/yellow color for selected stars */
+  }
+  
+  /* Change color of previous stars when hovering over them */
+  input[type="radio"]:checked ~ input[type="radio"] + label {
+    color: #f59e0b; /* Gold/yellow color for previous stars */
+  }
+  
