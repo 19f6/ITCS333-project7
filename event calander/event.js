@@ -5,8 +5,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const filterSelect = document.querySelector('nav select');
 
     let events = [];
-
-    // Correct API URL
     const API_URL = 'https://680d01dd2ea307e081d5b5e7.mockapi.io/api/events/Events';
 
     function createEventCard(event) {
@@ -139,7 +137,5 @@ document.addEventListener('DOMContentLoaded', () => {
             renderEvents(filtered);
         }
     });
-
-    // Start loading events on page load
     fetchEvents();
 });
