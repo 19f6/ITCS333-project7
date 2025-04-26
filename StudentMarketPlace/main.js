@@ -39,6 +39,8 @@ document.addEventListener("DOMContentLoaded", () => {
           "Used - Good",
           "Used - Acceptable",
         ][Math.floor(Math.random() * 4)],
+        rating: Math.floor(Math.random() * 5) + 1, // Random rating between 1 and 5
+        reviews: Math.floor(Math.random() * 100), // Random reviews count
       }));
       filteredProducts = allProducts;
       loader.remove();
@@ -70,6 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <h4>${product.title}</h4>
             <p>${product.description.substring(0, 50)}...</p>
             <p class="price">Price: ${product.price}BD</p>
+               <div class="rating">${"⭐".repeat(product.rating)} (${product.reviews})</div>
           </div>
           <a href="details.html?id=${product.id}&price=${product.price}" class="group-links">
             <button class="card-button">View Details</button>
