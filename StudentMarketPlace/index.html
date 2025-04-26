@@ -39,34 +39,33 @@
         <!-- Filters -->
         <div class="filters">
           <div>
-            <select>
-              <option disabled selected>Category</option>
-              <option>Math</option>
-              <option>Art</option>
-              <option>Science</option>
-              <option>Technology</option>
+            <select id="category-filter">
+              <option value="Category">Category</option>
+              <option value="Math">Math</option>
+              <option value="Art">Art</option>
+              <option value="Science">Science</option>
+              <option value="Technology">Technology</option>
             </select>
           </div>
           <div>
-            <select>
-              <option disabled selected>Price Range</option>
-              <option>$0 - $50</option>
-              <option>$50 - $100</option>
-              <option>$100 - $200</option>
-              <option>$200+</option>
+            <select id="price-filter">
+              <option value="Price Range">Price Range</option>
+              <option value="$0 - $50">$0 - $50</option>
+              <option value="$50 - $100">$50 - $100</option>
+              <option value="$100 - $200">$100 - $200</option>
+              <option value="$200+">$200+</option>
             </select>
           </div>
           <div>
-            <select>
-              <option disabled selected>Condition</option>
-              <option>New</option>
-              <option>Used - Like New</option>
-              <option>Used - Good</option>
-              <option>Used - Acceptable</option>
+            <select id="condition-filter">
+              <option value="Condition">Condition</option>
+              <option value="New">New</option>
+              <option value="Used - Like New">Used - Like New</option>
+              <option value="Used - Good">Used - Good</option>
+              <option value="Used - Acceptable">Used - Acceptable</option>
             </select>
           </div>
         </div>
-      </div>
 
       <!-- Main Content -->
 
@@ -250,7 +249,7 @@
         <!-- Product Form -->
         <div class="form-container">
           <h3>Add New Product</h3>
-          <form action="" method="post">
+          <form>
             <label for="product">Product Name</label>
             <input
               type="text"
@@ -258,13 +257,14 @@
               placeholder="Enter product name"
               required
             />
-
+        
             <label for="description">Description</label>
             <textarea
               id="description"
               placeholder="Describe your product"
+              required
             ></textarea>
-
+        
             <label for="price">Price (BD)</label>
             <input
               type="number"
@@ -272,18 +272,7 @@
               placeholder="Enter price"
               required
             />
-
-            <label>Product Condition</label>
-            <div>
-              <input type="radio" id="new" name="status" value="new" />
-              <label for="new">New</label>
-              <input type="radio" id="used" name="status" value="used" />
-              <label for="used">Used</label>
-            </div>
-
-            <label for="image">Upload Images</label>
-            <input type="file" id="image" />
-
+        
             <label for="contact">Contact Information</label>
             <input
               type="text"
@@ -291,14 +280,15 @@
               placeholder="Phone or email"
               required
             />
-
+        
             <div class="button-group">
               <button class="add" type="submit">Add Product</button>
-              <button class="cancel" type="button">Cancel</button>
+              <button class="cancel" type="reset">Cancel</button>
             </div>
           </form>
         </div>
       </div>
+
         <!-- Pagination -->
         <div class="pagination">
           <a href="#">&laquo;</a> 
@@ -310,7 +300,9 @@
           <a href="#">&raquo;</a>
         </div>
 
-      </div>
+      
     </div>
+
+    <script src="main.js"></script>
   </body>
 </html>
