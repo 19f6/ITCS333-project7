@@ -1,0 +1,65 @@
+[
+    {
+      "id": 1,
+      "title": "UOB Undergraduate Students Wrap Up Scientific Research Skills Workshops",
+      "body": "Students completed intensive workshops aimed at improving their scientific research methodologies.",
+      "category": "Technology",
+      "image": "pictures/pic3.png"
+    },
+    {
+      "id": 2,
+      "title": "UOB Business Introduces Students to ESG Reporting In Bahrain",
+      "body": "The College of Business launched workshops introducing Environmental, Social, and Governance reporting practices.",
+      "category": "Business",
+      "image": "pictures/pic4.png"
+    },
+    {
+      "id": 3,
+      "title": "Artificial Intelligence and Higher Education at the University of Bahrain",
+      "body": "The University hosted seminars discussing the role of AI in transforming education.",
+      "category": "Technology",
+      "image": "pictures/pic5.png"
+    },
+    {
+      "id": 4,
+      "title": "Academics Explore New Exam Design and Evaluation Criteria at UOB",
+      "body": "Faculty members attended a conference to modernize evaluation systems at the University.",
+      "category": "Engineering",
+      "image": "pictures/pic6.png"
+    },
+    {
+      "id": 5,
+      "title": "UOB Concludes the COBS Ramadan Soccer Tournament With Great Enthusiasm",
+      "body": "Students from various faculties participated in the annual Ramadan soccer event.",
+      "category": "Sport",
+      "image": "pictures/pic2.png"
+    },
+    {
+      "id": 6,
+      "title": "Department of Information Systems Hosts Career Development Session",
+      "body": "Alumni shared their career paths with current students to guide them for the future.",
+      "category": "Technology",
+      "image": "pictures/pic7.png"
+    },
+    {
+      "id": 7,
+      "title": "Emirati Astronauts Share Space Experiences with UOB Students",
+      "body": "Astronauts Mohammad Al Mulla and Nora Al Matrooshi spoke about life in space.",
+      "category": "Technology",
+      "image": "pictures/pic8.png"
+    },
+    {
+      "id": 8,
+      "title": "Islamic Banking Students Attend Seminar on Murabaha and Tawarruq",
+      "body": "An insightful seminar on Islamic finance methods was conducted for banking students.",
+      "category": "Business",
+      "image": "pictures/pic9.png"
+    },
+    {
+      "id": 9,
+      "title": "UOB Partners with CERN for Quantum Computing Workshop",
+      "body": "Students learned how quantum computing can be leveraged for sustainable development.",
+      "category": "Technology",
+      "image": "pictures/pic12.png"
+    }
+]
