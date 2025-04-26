@@ -10,7 +10,7 @@ const apiURL = 'data.json';
 
 let allNews = [];
 let displayedNews = [];
-let currentPage = 1;
+let currentPage = 5;
 const itemsPerPage = 5;
 
 async function fetchNews() {
@@ -37,9 +37,18 @@ async function fetchNews() {
 
 function renderNews() {
     clearNews();
-    const paginatedItems = getPaginatedItems(displayedNews, currentPage, itemsPerPage);
+    
+    let itemsToShow = [];
+    
+    if (currentPage === 5) {
+        
+        itemsToShow = allNews.filter(item => item.id >= 1 && item.id <= 9); 
+    } else {
+        const start = (currentPage - 1) * itemsPerPage;
+        itemsToShow = allNews.slice(start, start + itemsPerPage);
+    }
 
-    paginatedItems.forEach(item => {
+    itemsToShow.forEach(item => {
         const link = document.createElement('a');
         link.href = `News/News${item.id}.html`;
         link.target = "_blank";
@@ -72,6 +81,7 @@ function renderNews() {
 
     renderPagination();
 }
+
 
 
 

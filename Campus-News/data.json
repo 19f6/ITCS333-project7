@@ -1,65 +1,87 @@
 [
-    {
-      "id": 1,
-      "title": "UOB Undergraduate Students Wrap Up Scientific Research Skills Workshops",
-      "body": "Students completed intensive workshops aimed at improving their scientific research methodologies.",
-      "category": "Technology",
-      "image": "pictures/pic3.png"
-    },
-    {
-      "id": 2,
-      "title": "UOB Business Introduces Students to ESG Reporting In Bahrain",
-      "body": "The College of Business launched workshops introducing Environmental, Social, and Governance reporting practices.",
-      "category": "Business",
-      "image": "pictures/pic4.png"
-    },
-    {
-      "id": 3,
-      "title": "Artificial Intelligence and Higher Education at the University of Bahrain",
-      "body": "The University hosted seminars discussing the role of AI in transforming education.",
-      "category": "Technology",
-      "image": "pictures/pic5.png"
-    },
-    {
-      "id": 4,
-      "title": "Academics Explore New Exam Design and Evaluation Criteria at UOB",
-      "body": "Faculty members attended a conference to modernize evaluation systems at the University.",
-      "category": "Engineering",
-      "image": "pictures/pic6.png"
-    },
-    {
-      "id": 5,
-      "title": "UOB Concludes the COBS Ramadan Soccer Tournament With Great Enthusiasm",
-      "body": "Students from various faculties participated in the annual Ramadan soccer event.",
-      "category": "Sport",
-      "image": "pictures/pic2.png"
-    },
-    {
-      "id": 6,
-      "title": "Department of Information Systems Hosts Career Development Session",
-      "body": "Alumni shared their career paths with current students to guide them for the future.",
-      "category": "Technology",
-      "image": "pictures/pic7.png"
-    },
-    {
-      "id": 7,
-      "title": "Emirati Astronauts Share Space Experiences with UOB Students",
-      "body": "Astronauts Mohammad Al Mulla and Nora Al Matrooshi spoke about life in space.",
-      "category": "Technology",
-      "image": "pictures/pic8.png"
-    },
-    {
-      "id": 8,
-      "title": "Islamic Banking Students Attend Seminar on Murabaha and Tawarruq",
-      "body": "An insightful seminar on Islamic finance methods was conducted for banking students.",
-      "category": "Business",
-      "image": "pictures/pic9.png"
-    },
-    {
-      "id": 9,
-      "title": "UOB Partners with CERN for Quantum Computing Workshop",
-      "body": "Students learned how quantum computing can be leveraged for sustainable development.",
-      "category": "Technology",
-      "image": "pictures/pic12.png"
-    }
+  {
+    "id": 1,
+    "title": "UOB Undergraduate Students Wrap Up Scientific Research Skills Workshops",
+    "body": "Students completed intensive workshops aimed at improving their scientific research methodologies.",
+    "category": "Technology",
+    "image": "pictures/pic3.png"
+  },
+  {
+    "id": 2,
+    "title": "UOB Business Introduces Students to ESG Reporting In Bahrain",
+    "body": "The College of Business launched workshops introducing Environmental, Social, and Governance reporting practices.",
+    "category": "Business",
+    "image": "pictures/pic4.png"
+  },
+  {
+    "id": 3,
+    "title": "Artificial Intelligence and Higher Education at the University of Bahrain",
+    "body": "The University hosted seminars discussing the role of AI in transforming education.",
+    "category": "Technology",
+    "image": "pictures/pic5.png"
+  },
+  {
+    "id": 4,
+    "title": "Academics Explore New Exam Design and Evaluation Criteria at UOB",
+    "body": "Faculty members attended a conference to modernize evaluation systems at the University.",
+    "category": "Engineering",
+    "image": "pictures/pic6.png"
+  },
+  {
+    "id": 5,
+    "title": "UOB Concludes the COBS Ramadan Soccer Tournament With Great Enthusiasm",
+    "body": "Students from various faculties participated in the annual Ramadan soccer event.",
+    "category": "Sport",
+    "image": "pictures/pic2.png"
+  },
+  {
+    "id": 6,
+    "title": "Department of Information Systems Hosts Career Development Session",
+    "body": "Alumni shared their career paths with current students to guide them for the future.",
+    "category": "Technology",
+    "image": "pictures/pic7.png"
+  },
+  {
+    "id": 7,
+    "title": "Emirati Astronauts Share Space Experiences with UOB Students",
+    "body": "Astronauts Mohammad Al Mulla and Nora Al Matrooshi spoke about life in space.",
+    "category": "Technology",
+    "image": "pictures/pic8.png"
+  },
+  {
+    "id": 8,
+    "title": "Islamic Banking Students Attend Seminar on Murabaha and Tawarruq",
+    "body": "An insightful seminar on Islamic finance methods was conducted for banking students.",
+    "category": "Business",
+    "image": "pictures/pic9.png"
+  },
+  {
+    "id": 9,
+    "title": "UOB Partners with CERN for Quantum Computing Workshop",
+    "body": "Students learned how quantum computing can be leveraged for sustainable development.",
+    "category": "Technology",
+    "image": "pictures/pic12.png"
+  },
+  
+  { "id": 10, "title": "Dummy News 10", "body": "Dummy body 10", "category": "Tech", "image": "pictures/pic1.png" },
+  { "id": 11, "title": "Dummy News 11", "body": "Dummy body 11", "category": "Business", "image": "pictures/pic2.png" },
+  { "id": 12, "title": "Dummy News 12", "body": "Dummy body 12", "category": "Art", "image": "pictures/pic3.png" },
+  { "id": 13, "title": "Dummy News 13", "body": "Dummy body 13", "category": "Engineering", "image": "pictures/pic4.png" },
+  { "id": 14, "title": "Dummy News 14", "body": "Dummy body 14", "category": "Sport", "image": "pictures/pic5.png" },
+  { "id": 15, "title": "Dummy News 15", "body": "Dummy body 15", "category": "Tech", "image": "pictures/pic6.png" },
+  { "id": 16, "title": "Dummy News 16", "body": "Dummy body 16", "category": "Business", "image": "pictures/pic7.png" },
+  { "id": 17, "title": "Dummy News 17", "body": "Dummy body 17", "category": "Art", "image": "pictures/pic8.png" },
+  { "id": 18, "title": "Dummy News 18", "body": "Dummy body 18", "category": "Engineering", "image": "pictures/pic9.png" },
+  { "id": 19, "title": "Dummy News 19", "body": "Dummy body 19", "category": "Sport", "image": "pictures/pic10.png" },
+  { "id": 20, "title": "Dummy News 20", "body": "Dummy body 20", "category": "Tech", "image": "pictures/pic11.png" },
+  { "id": 21, "title": "Dummy News 21", "body": "Dummy body 21", "category": "Business", "image": "pictures/pic12.png" },
+  { "id": 22, "title": "Dummy News 22", "body": "Dummy body 22", "category": "Art", "image": "pictures/pic13.png" },
+  { "id": 23, "title": "Dummy News 23", "body": "Dummy body 23", "category": "Engineering", "image": "pictures/pic14.png" },
+  { "id": 24, "title": "Dummy News 24", "body": "Dummy body 24", "category": "Sport", "image": "pictures/pic15.png" },
+  { "id": 25, "title": "Dummy News 25", "body": "Dummy body 25", "category": "Tech", "image": "pictures/pic16.png" },
+  { "id": 26, "title": "Dummy News 26", "body": "Dummy body 26", "category": "Business", "image": "pictures/pic17.png" },
+  { "id": 27, "title": "Dummy News 27", "body": "Dummy body 27", "category": "Art", "image": "pictures/pic18.png" },
+  { "id": 28, "title": "Dummy News 28", "body": "Dummy body 28", "category": "Engineering", "image": "pictures/pic19.png" },
+  { "id": 29, "title": "Dummy News 29", "body": "Dummy body 29", "category": "Sport", "image": "pictures/pic20.png" },
+  { "id": 30, "title": "Dummy News 30", "body": "Dummy body 30", "category": "Tech", "image": "pictures/pic21.png" }
 ]
