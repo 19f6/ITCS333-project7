@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => { 
   const productTitle = document.querySelector(".title");
   const productCategory = document.querySelector(".group-detail-subject");
   const productDescription = document.querySelector(".description-section");
@@ -7,111 +7,128 @@ document.addEventListener("DOMContentLoaded", () => {
   const commentsCount = document.querySelector(".comments-count");
   const commentForm = document.querySelector(".comment-form form");
   const commentTextarea = commentForm.querySelector("textarea");
+  const backLink = document.querySelector(".back-link");
 
-  // Get product ID and price from URL
   const urlParams = new URLSearchParams(window.location.search);
   const productId = urlParams.get("id");
+  const productTitleParam = urlParams.get("title");
   const productPrice = urlParams.get("price");
+  const productImageParam = urlParams.get("image");
+  const productDescParam = urlParams.get("description");
 
-  if (!productId) {
-    alert("No product ID found in the URL.");
-    return;
+  if (productTitleParam) {
+    productTitle.textContent = productTitleParam;
   }
 
-  // Fetch product details
-  fetch(`https://jsonplaceholder.typicode.com/posts/${productId}`)
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Failed to fetch product details");
-      }
-      return response.json();
-    })
-    .then((product) => {
-      // Generate dynamic email and contact
-      const email = `contact+${productId}@unihub.com`;
-      const contact = `+97335${Math.floor(100000 + Math.random() * 900000)}`;
+  if (productImageParam) {
+    productImage.src = productImageParam;
+    productImage.alt = productTitleParam || "Product Image";
+  }
 
-      // Populate product details
-      productTitle.textContent = product.title;
-      productCategory.textContent = ["Math", "Art", "Science", "Technology"][
-        Math.floor(Math.random() * 4)
-      ];
-      productDescription.innerHTML = `
-        <h1>Description</h1>
-        <p>${product.body}</p>
-        <p><strong>💰 Price:</strong> <span style="color:#7c7fd9;">${productPrice}BD</span></p>
-        <p><strong>📞 Contact:</strong><br>
-          Email: <a href="mailto:${email}">${email}</a><br>
-          Mobile: <a href="tel:${contact}">${contact}</a>
-        </p>`;
-      productImage.src = `https://picsum.photos/seed/${productId}/500/300`; // Consistent image URL
-    })
-    .catch((error) => {
-      console.error(error);
-      productDescription.innerHTML = "<p>Failed to load product details.</p>";
+  const generateContactInfo = () => {
+    const email = `seller${Math.floor(1000 + Math.random() * 9000)}@unihub.edu`;
+    const phone = `+973${Math.floor(35000000 + Math.random() * 50000000)}`;
+    return {
+      email,
+      phone
+    };
+  };
+
+  if (backLink) {
+    backLink.addEventListener("click", (e) => {
+      e.preventDefault();
+      window.history.back();
     });
+  }
 
-  // Fetch comments
-  fetch(`https://jsonplaceholder.typicode.com/comments?postId=${productId}`)
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Failed to fetch comments");
-      }
-      return response.json();
-    })
-    .then((comments) => {
-      commentsCount.textContent = `Comments (${comments.length})`;
-      comments.forEach((comment) => {
-        // Generate a random timestamp for existing comments
-        const randomDate = new Date(Date.now() - Math.floor(Math.random() * 10000000000));
-        const timeString = randomDate.toLocaleDateString([], { year: 'numeric', month: 'short', day: 'numeric' });
+  if (productDescParam || productId) {
+    const contact = generateContactInfo();
+    const conditions = ["New", "Like New", "Good", "Fair"];
+    const randomCondition = conditions[Math.floor(Math.random() * conditions.length)];
+    const randomRating = (Math.random() * 0.5 + 4.5).toFixed(1);
+    
+    productDescription.innerHTML = `
+      <h1>Description</h1>
+      <h2> ${productTitleParam || "Product"}  ${randomCondition.toUpperCase()}</h2>
+      <p>${productDescParam || "This product is in great condition and perfect for students."}</p>
 
-        const commentHTML = `
-          <div class="comment">
+      <p><strong>Condition:</strong> ${randomCondition}  ${ 
+        randomCondition === "New" ? "Never used" : 
+        randomCondition === "Like New" ? "Minimal signs of use" :
+        randomCondition === "Good" ? "Some highlighting/notes" :
+        "Visible wear but fully functional"
+      }</p>
+
+      <p><strong>Key Features:</strong></p>
+      <ul>
+        <li>✅ Comprehensive coverage of core concepts</li>
+        <li>✅ ${Math.floor(Math.random() * 500 + 500)} practice problems with solutions</li>
+        <li>✅ Perfect for exam preparation and coursework</li>
+        <li>✅ Clear explanations and examples</li>
+      </ul>
+
+      <p><strong> Student Rating:</strong> ${"★".repeat(5)} ${randomRating}/5</p>
+      <p><em>"${[
+        "Extremely helpful for my studies!",
+        "Saved me so much time understanding difficult concepts.",
+        "Condition was better than expected!",
+        "Great value for the price."
+      ][Math.floor(Math.random() * 4)]}"  Previous buyer</em></p>
+
+      <p><strong> Price:</strong> <span style="color:#7c7fd9;">${productPrice || "N/A"}BD</span></p>
+
+      <p><strong> Contact Seller:</strong><br>
+        Email: <a href="mailto:${contact.email}">${contact.email}</a><br>
+        Mobile: <a href="tel:${contact.phone}">${contact.phone}</a>
+      </p>
+      <p class="safety-tip">🔒 Meet in public campus locations for exchanges</p>
+    `;
+  }
+
+  let comments = [];
+
+  renderComments();
+
+  function renderComments() {
+    commentsCount.textContent = `Comments (${comments.length})`;
+    commentsSection.insertAdjacentHTML("afterbegin", `
+      ${comments.map(comment => `
+        <div class="comment">
+          <div class="comment-content">
             <div class="comment-header">
               <span class="comment-author">${comment.name}</span>
-              <span class="comment-time">${timeString}</span>
+              <span class="comment-time">${comment.time}</span>
             </div>
-            <p>${comment.body}</p>
-          </div>`;
-        commentsSection.insertAdjacentHTML("beforeend", commentHTML);
-      });
-    })
-    .catch((error) => {
-      console.error(error);
-      commentsSection.innerHTML = "<p>Failed to load comments.</p>";
-    });
+            <p class="comment-text">${comment.text}</p>
+          </div>
+        </div>
+      `).join('')}
+    `);
+  }
 
-  // Add a new comment
   commentForm.addEventListener("submit", (e) => {
     e.preventDefault();
-    const newComment = commentTextarea.value.trim();
-
-    if (!newComment) {
+    const commentText = commentTextarea.value.trim();
+    
+    if (!commentText) {
       alert("Please write a comment before submitting.");
       return;
     }
 
-    // Get the current time
-    const now = new Date();
-    const timeString = now.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
-
-    // Simulate adding a new comment
-    const commentHTML = `
-      <div class="comment">
-        <div class="comment-header">
-          <span class="comment-author">You</span>
-          <span class="comment-time">${timeString}</span>
-        </div>
-        <p>${newComment}</p>
-      </div>`;
-    commentsSection.insertAdjacentHTML("beforeend", commentHTML);
-
-    // Update comment count
-    const currentCount = parseInt(commentsCount.textContent.match(/\d+/)[0]);
-    commentsCount.textContent = `Comments (${currentCount + 1})`;
-
-    // Clear the textarea
+    const newComment = {
+      name: "You",
+      text: commentText,
+      time: "Just now"
+    };
+    
+    comments.unshift(newComment);
+    renderComments();
     commentTextarea.value = "";
+    
+    const successMsg = document.createElement("div");
+    successMsg.className = "comment-success";
+    successMsg.textContent = "Comment posted!";
+    commentForm.appendChild(successMsg);
+    setTimeout(() => successMsg.remove(), 2000);
   });
 });
