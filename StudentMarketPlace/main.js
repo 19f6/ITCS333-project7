@@ -96,6 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
         renderProducts();
         setupPagination();
       }
+      
     });
     paginationContainer.appendChild(prevLink);
     for (let i = 1; i <= totalPages; i++) {
