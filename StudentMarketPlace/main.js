@@ -5,93 +5,104 @@ document.addEventListener("DOMContentLoaded", () => {
   const priceFilter = document.querySelector("#price-filter");
   const conditionFilter = document.querySelector("#condition-filter");
   const paginationContainer = document.querySelector(".pagination");
-  const loader = document.createElement("p");
-  loader.textContent = "Loading products...";
-  productList.appendChild(loader);
+  const formToggle = document.getElementById("form-toggle");
+  const formContainer = document.querySelector(".form-container");
+  const closeForm = document.getElementById("close-form");
+  const productForm = document.querySelector(".form-container form");
 
   let allProducts = [];
   let filteredProducts = [];
   let currentPage = 1;
-  const productsPerPage = 6;
+  const productsPerPage = 8;
 
-  // Fetch data from the mock API
-  fetch("https://jsonplaceholder.typicode.com/posts")
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Failed to fetch data");
-      }
-      return response.json();
-    })
-    .then((data) => {
-      // Map API data to product structure
-      allProducts = data.map((item) => ({
-        id: item.id,
-        title: item.title,
-        description: item.body,
-        price: Math.floor(Math.random() * 50 + 10), // Random price
-        image: `https://picsum.photos/seed/${item.id}/300/200`, // Consistent image URL
-        category: ["Math", "Art", "Science", "Technology"][
-          Math.floor(Math.random() * 4)
-        ],
-        condition: [
-          "New",
-          "Used - Like New",
-          "Used - Good",
-          "Used - Acceptable",
-        ][Math.floor(Math.random() * 4)],
-        rating: Math.floor(Math.random() * 5) + 1, // Random rating between 1 and 5
-        reviews: Math.floor(Math.random() * 100), // Random reviews count
-      }));
-      filteredProducts = allProducts;
-      loader.remove();
-      renderProducts();
-      setupPagination();
-    })
-    .catch((error) => {
-      loader.textContent = "Failed to load products. Please try again.";
-      console.error(error);
+  const sampleProducts = [];
+
+  function init() {
+    allProducts = sampleProducts;
+    filteredProducts = [...allProducts];
+    renderProducts();
+    setupPagination();
+    setupEventListeners();
+  }
+
+  function setupEventListeners() {
+    searchBox.addEventListener("input", debounce(filterAndSearch, 300));
+    categoryFilter.addEventListener("change", filterAndSearch);
+    priceFilter.addEventListener("change", filterAndSearch);
+    conditionFilter.addEventListener("change", filterAndSearch);
+    formToggle.addEventListener("click", () => {
+      formContainer.classList.remove("hidden");
+      formToggle.classList.add("hidden");
     });
+    closeForm.addEventListener("click", () => {
+      formContainer.classList.add("hidden");
+      formToggle.classList.remove("hidden");
+    });
+    productForm.addEventListener("submit", handleFormSubmit);
+  }
 
-  // Render products dynamically
   function renderProducts() {
     productList.innerHTML = "";
     const start = (currentPage - 1) * productsPerPage;
     const end = start + productsPerPage;
     const paginatedProducts = filteredProducts.slice(start, end);
-
     if (paginatedProducts.length === 0) {
-      productList.innerHTML = "<p>No products found.</p>";
+      productList.innerHTML = `
+        <div class="empty-state">
+          <p>No products found matching your criteria.</p>
+        </div>
+      `;
       return;
     }
-
     paginatedProducts.forEach((product) => {
+      const stars = "★".repeat(product.rating) + "☆".repeat(5 - product.rating);
       const productHTML = `
         <div class="product-item">
           <img src="${product.image}" alt="${product.title}" class="product-image" />
           <div class="product-details">
             <h4>${product.title}</h4>
-            <p>${product.description.substring(0, 50)}...</p>
+            <p>${product.description}</p>
             <p class="price">Price: ${product.price}BD</p>
-               <div class="rating">${"⭐".repeat(product.rating)} (${product.reviews})</div>
+            <div class="rating">
+              ${stars} <span>(${product.reviews})</span>
+            </div>
           </div>
-          <a href="details.html?id=${product.id}&price=${product.price}" class="group-links">
+          <a href="${product.link}?${new URLSearchParams({
+            id: product.id,
+            title: product.title,
+            price: product.price,
+            image: product.image,
+            description: product.description
+          }).toString()}" class="group-links">
             <button class="card-button">View Details</button>
           </a>
-        </div>`;
+        </div>
+      `;
       productList.insertAdjacentHTML("beforeend", productHTML);
     });
   }
 
-  // Setup pagination
   function setupPagination() {
     paginationContainer.innerHTML = "";
     const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
-
+    const prevLink = document.createElement("a");
+    prevLink.href = "#";
+    prevLink.innerHTML = "&laquo;";
+    prevLink.className = currentPage === 1 ? "disabled" : "";
+    prevLink.addEventListener("click", (e) => {
+      e.preventDefault();
+      if (currentPage > 1) {
+        currentPage--;
+        renderProducts();
+        setupPagination();
+      }
+    });
+    paginationContainer.appendChild(prevLink);
     for (let i = 1; i <= totalPages; i++) {
       const pageLink = document.createElement("a");
-      pageLink.textContent = i;
       pageLink.href = "#";
-      if (i === currentPage) pageLink.classList.add("active");
+      pageLink.textContent = i;
+      pageLink.className = i === currentPage ? "active" : "";
       pageLink.addEventListener("click", (e) => {
         e.preventDefault();
         currentPage = i;
@@ -100,53 +111,86 @@ document.addEventListener("DOMContentLoaded", () => {
       });
       paginationContainer.appendChild(pageLink);
     }
+    const nextLink = document.createElement("a");
+    nextLink.href = "#";
+    nextLink.innerHTML = "&raquo;";
+    nextLink.className = currentPage === totalPages ? "disabled" : "";
+    nextLink.addEventListener("click", (e) => {
+      e.preventDefault();
+      if (currentPage < totalPages) {
+        currentPage++;
+        renderProducts();
+        setupPagination();
+      }
+    });
+    paginationContainer.appendChild(nextLink);
   }
 
-  // Filter and search functionality
   function filterAndSearch() {
     const searchQuery = searchBox.value.toLowerCase();
     const selectedCategory = categoryFilter.value;
     const selectedPrice = priceFilter.value;
     const selectedCondition = conditionFilter.value;
-
     filteredProducts = allProducts.filter((product) => {
-      const matchesSearch = product.title.toLowerCase().includes(searchQuery);
-      const matchesCategory =
-        selectedCategory === "Category" || product.category === selectedCategory;
-      const matchesPrice =
-        selectedPrice === "Price Range" ||
-        checkPriceRange(product.price, selectedPrice);
-      const matchesCondition =
-        selectedCondition === "Condition" ||
-        product.condition === selectedCondition;
-
+      const matchesSearch = product.title.toLowerCase().includes(searchQuery) || 
+                          product.description.toLowerCase().includes(searchQuery);
+      const matchesCategory = selectedCategory === "Category" || 
+                            product.category === selectedCategory;
+      const matchesPrice = selectedPrice === "Price Range" || 
+                         checkPriceRange(product.price, selectedPrice);
+      const matchesCondition = selectedCondition === "Condition" || 
+                             product.condition === selectedCondition;
       return matchesSearch && matchesCategory && matchesPrice && matchesCondition;
     });
-
     currentPage = 1;
     renderProducts();
     setupPagination();
   }
 
-  // Check price range
   function checkPriceRange(price, range) {
+    const priceNum = parseFloat(price);
     switch (range) {
-      case "$0 - $50":
-        return price <= 50;
-      case "$50 - $100":
-        return price > 50 && price <= 100;
-      case "$100 - $200":
-        return price > 100 && price <= 200;
-      case "$200+":
-        return price > 200;
-      default:
-        return true;
+      case "$0 - $50": return priceNum <= 50;
+      case "$50 - $100": return priceNum > 50 && priceNum <= 100;
+      case "$100 - $200": return priceNum > 100 && priceNum <= 200;
+      case "$200+": return priceNum > 200;
+      default: return true;
     }
   }
 
-  // Event listeners for filters and search
-  searchBox.addEventListener("input", filterAndSearch);
-  categoryFilter.addEventListener("change", filterAndSearch);
-  priceFilter.addEventListener("change", filterAndSearch);
-  conditionFilter.addEventListener("change", filterAndSearch);
+  function handleFormSubmit(e) {
+    e.preventDefault();
+    const newProduct = {
+      id: allProducts.length + 1,
+      title: document.getElementById("product").value,
+      description: document.getElementById("description").value,
+      price: parseFloat(document.getElementById("price").value),
+      image: "images/default-product.jpg",
+      category: "General",
+      condition: "New",
+      rating: 0,
+      reviews: 0,
+      link: "details.html"
+    };
+    allProducts.unshift(newProduct);
+    filteredProducts = [...allProducts];
+    productForm.reset();
+    formContainer.classList.add("hidden");
+    formToggle.classList.remove("hidden");
+    currentPage = 1;
+    renderProducts();
+    setupPagination();
+  }
+
+  function debounce(func, delay) {
+    let timeoutId;
+    return function() {
+      const context = this;
+      const args = arguments;
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => func.apply(context, args), delay);
+    };
+  }
+
+  init();
 });
