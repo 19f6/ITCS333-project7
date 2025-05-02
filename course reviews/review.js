@@ -105,7 +105,6 @@ function displayCourses(courses, page = 1) {
                 <h3 class="text-lg font-semibold">${course.title}</h3>
                 <p><strong>College:</strong> ${course.college || "N/A"}</p>
                 <p><strong>Description:</strong> ${course.description}</p>
-                <p><strong>Rating:</strong> ${averageRating} (${totalReviews} review${totalReviews !== 1 ? "s" : ""})</p>
             </div>
             <button class="review-btn bg-primary text-white px-4 py-2 rounded hover:bg-secondary">Add your review</button>
         `;
@@ -259,6 +258,16 @@ document.getElementById("close-modal").addEventListener("click", () => {
 });
 document.getElementById("cancel-modal").addEventListener("click", () => {
     document.getElementById("create-course-modal").classList.add("hidden");
+});
+document.addEventListener("DOMContentLoaded", function () {
+    const toggle = document.getElementById("menu-toggle");
+    const menu = document.getElementById("menu-items");
+
+    if (toggle && menu) {
+        toggle.addEventListener("click", () => {
+            menu.classList.toggle("hidden");
+        });
+    }
 });
 
 // Init
