@@ -1,43 +1,88 @@
-const API_URL = "https://680d187ec47cb8074d8f8bc6.mockapi.io/reviews";
+const API_URL = "https://680d187ec47cb8074d8f8bc6.mockapi.io/courses";
+const REVIEWS_API = "https://680d187ec47cb8074d8f8bc6.mockapi.io/reviews";
 
 let allCourses = [];
+let filteredCourses = [];
+let allReviews = [];
+let currentReviewCourse = null;
 let currentPage = 1;
-const itemsPerPage = 3;
-let selectedRating = 0;
+const itemsPerPage = 4;
 
+// DOM Elements
 const courseContainer = document.getElementById("course-container");
-const filterCollege = document.getElementById("filter-college");
-const filterCourse = document.getElementById("filter-course");
-const searchInput = document.getElementById("search");
-const createForm = document.getElementById("create-form");
+const reviewModal = document.getElementById("review-modal");
+const reviewDetails = document.getElementById("review-course-details");
+const reviewComments = document.getElementById("review-comments");
+const reviewForm = document.getElementById("review-form");
+const reviewRating = document.getElementById("review-rating");
+const reviewComment = document.getElementById("review-comment");
 
+// Fetch courses and reviews
 async function fetchCourses() {
-    showLoading();
+    const spinner = document.getElementById("loading-spinner");
+    const paginationContainer = document.getElementById("pagination");
+    const collegeSelect = document.getElementById("filter-college");
+    const courseSelect = document.getElementById("filter-course");
+
+    const collegeOptions = new Set();
+    const courseOptions = new Set();
+
+    spinner.classList.remove("hidden");
+    paginationContainer.classList.add("hidden");
+
     try {
-        const response = await fetch(API_URL);
-        if (!response.ok) {
-            throw new Error("Failed to fetch courses");
-        }
-        const data = await response.json();
-        allCourses = data;
-        renderCourses();
-        populateFilterCourses();
+        const [coursesRes, reviewsRes] = await Promise.all([
+            fetch(API_URL),
+            fetch(REVIEWS_API)
+        ]);
+        if (!coursesRes.ok || !reviewsRes.ok) throw new Error("Network error");
+
+        allCourses = await coursesRes.json();
+        allReviews = await reviewsRes.json();
+        filteredCourses = [...allCourses];
+
+        // Populate dropdowns
+        allCourses.forEach((course) => {
+            if (course.college) collegeOptions.add(course.college);
+            if (course.title) courseOptions.add(course.title);
+        });
+
+        collegeSelect.innerHTML = '<option value="">All Colleges</option>';
+        courseSelect.innerHTML = '<option value="">All Courses</option>';
+
+        collegeOptions.forEach((college) => {
+            const option = document.createElement("option");
+            option.value = college;
+            option.textContent = college;
+            collegeSelect.appendChild(option);
+        });
+
+        courseOptions.forEach((course) => {
+            const option = document.createElement("option");
+            option.value = course;
+            option.textContent = course;
+            courseSelect.appendChild(option);
+        });
+
+        displayCourses(filteredCourses, currentPage);
+        renderPagination(filteredCourses);
     } catch (error) {
-        showError(error.message);
+        console.log("Error:", error);
+        courseContainer.innerHTML = `
+            <div class="p-4 bg-red-100 text-red-700 rounded-lg">
+                Failed to load courses. Try again later.
+            </div>`;
+    } finally {
+        spinner.classList.add("hidden");
+        paginationContainer.classList.remove("hidden");
     }
 }
 
-function showLoading() {
-    courseContainer.innerHTML = "<p>Loading courses...</p>";
-}
-
-function showError(message) {
-    courseContainer.innerHTML = `<p class="text-red-500">${message}</p>`;
-}
-
-function renderCourses() {
-    const filtered = applyFilters(allCourses);
-    const paginated = applyPagination(filtered);
+// Display paginated course cards
+function displayCourses(courses, page = 1) {
+    const start = (page - 1) * itemsPerPage;
+    const end = start + itemsPerPage;
+    const paginated = courses.slice(start, end);
 
     courseContainer.innerHTML = "";
 
@@ -46,138 +91,179 @@ function renderCourses() {
         return;
     }
 
-    paginated.forEach(course => {
+    paginated.forEach((course) => {
+        const courseReviews = allReviews.filter((r) => r.course === course.title);
+        const averageRating = courseReviews.length
+            ? (courseReviews.reduce((sum, r) => sum + Number(r.rating), 0) / courseReviews.length).toFixed(1)
+            : "No ratings yet";
+        const totalReviews = courseReviews.length;
+
         const courseCard = document.createElement("div");
-        courseCard.className = "course-card p-4 bg-white rounded shadow";
+        courseCard.className = "course-card p-4 bg-white rounded shadow mb-4";
         courseCard.innerHTML = `
-            <div class="course-header mb-2">
-                <h3 class="course-title font-bold text-lg">${course.course}</h3>
-                <span class="course-subject text-gray-500">${course.college}</span>
+            <div class="mb-4">
+                <h3 class="text-lg font-semibold">${course.title}</h3>
+                <p><strong>College:</strong> ${course.college || "N/A"}</p>
+                <p><strong>Description:</strong> ${course.description}</p>
+                <p><strong>Rating:</strong> ${averageRating} (${totalReviews} review${totalReviews !== 1 ? "s" : ""})</p>
             </div>
-            <div class="course-details mb-2">
-                <p><strong>Description:</strong> ${course.review}</p>
-            </div>
-            <div class="stars text-yellow-400 text-2xl mb-2">
-                ${"★".repeat(course.rating)}${"☆".repeat(5 - course.rating)}
-            </div>
-            <button class="join-button bg-blue-500 hover:bg-blue-600 text-white py-1 px-4 rounded">Add your review</button>
+            <button class="review-btn bg-primary text-white px-4 py-2 rounded hover:bg-secondary">Add your review</button>
         `;
+
+        // Handle review button click
+        courseCard.querySelector(".review-btn").addEventListener("click", () => {
+            currentReviewCourse = course;
+
+            reviewDetails.innerHTML = `
+                <h3 class="text-xl font-bold">${course.title}</h3>
+                <p><strong>College:</strong> ${course.college}</p>
+                <p><strong>Description:</strong> ${course.description}</p>
+            `;
+
+            const courseReviews = allReviews.filter((r) => r.course === course.title);
+            reviewComments.innerHTML = courseReviews.length
+                ? courseReviews.map(r => `<div class="border p-2 rounded"><strong>Rating:</strong> ${r.rating}<br/>${r.comment}</div>`).join("")
+                : `<p>No reviews yet.</p>`;
+
+            reviewModal.classList.remove("hidden");
+        });
+
         courseContainer.appendChild(courseCard);
     });
-
-    renderPagination(filtered.length);
 }
 
-function applyFilters(courses) {
-    const college = filterCollege.value;
-    const search = searchInput.value.toLowerCase();
-
-    return courses.filter(course => {
-        const matchesCollege = !college || course.college === college;
-        const matchesSearch = course.course.toLowerCase().includes(search) ||
-            course.review.toLowerCase().includes(search);
-        return matchesCollege && matchesSearch;
-    });
-}
-
-function applyPagination(courses) {
-    const start = (currentPage - 1) * itemsPerPage;
-    return courses.slice(start, start + itemsPerPage);
-}
-
-function renderPagination(totalItems) {
-    const totalPages = Math.ceil(totalItems / itemsPerPage);
-    const paginationDiv = document.createElement("div");
-    paginationDiv.className = "flex gap-2 mt-4 justify-center";
-
-    for (let i = 1; i <= totalPages; i++) {
-        const btn = document.createElement("button");
-        btn.textContent = i;
-        btn.className = `px-3 py-1 rounded ${i === currentPage ? "bg-blue-500 text-white" : "bg-gray-200"}`;
-        btn.addEventListener("click", () => {
-            currentPage = i;
-            renderCourses();
-        });
-        paginationDiv.appendChild(btn);
-    }
-
-    courseContainer.appendChild(paginationDiv);
-}
-
-function populateFilterCourses() {
-    const courseNames = [...new Set(allCourses.map(c => c.course))];
-    filterCourse.innerHTML = `<option value="">All Courses</option>`;
-    courseNames.forEach(name => {
-        const option = document.createElement("option");
-        option.value = name;
-        option.textContent = name;
-        filterCourse.appendChild(option);
-    });
-}
-
-filterCollege.addEventListener("change", () => {
-    currentPage = 1;
-    renderCourses();
-});
-
-filterCourse.addEventListener("change", () => {
-    currentPage = 1;
-    searchInput.value = filterCourse.value;
-    renderCourses();
-});
-
-searchInput.addEventListener("input", () => {
-    currentPage = 1;
-    renderCourses();
-});
-
-createForm.addEventListener("submit", async (e) => {
+// Handle review form submission
+reviewForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const courseName = document.getElementById("course-name").value.trim();
-    const college = document.getElementById("subject").value;
-    const level = document.getElementById("level").value;
-    const review = document.getElementById("description").value.trim();
-
-    if (!courseName || !college || !level || !review || selectedRating === 0) {
-        alert("Please fill all fields and select a rating!");
-        return;
-    }
-
     const newReview = {
-        course: courseName,
-        college: college,
-        review: review,
-        rating: selectedRating
+        course: currentReviewCourse.title,
+        rating: reviewRating.value,
+        comment: reviewComment.value,
+        createdAt: new Date().toISOString(),
     };
 
     try {
-        const response = await fetch(API_URL, {
+        const res = await fetch(REVIEWS_API, {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
+            headers: { "Content-Type": "application/json" },
             body: JSON.stringify(newReview),
         });
 
-        if (!response.ok) {
-            throw new Error("Failed to submit review");
-        }
+        if (!res.ok) throw new Error("Failed to post review");
 
-        alert(`Review created successfully!\nRating: ${selectedRating} Stars`);
-        createForm.reset();
-        selectedRating = 0;
-        fetchCourses();
+        const savedReview = await res.json();
+        allReviews.push(savedReview);
+
+        // Reset form
+        reviewRating.value = "";
+        reviewComment.value = "";
+
+        // Refresh comment list in modal
+        const updatedReviews = allReviews.filter((r) => r.course === currentReviewCourse.title);
+        reviewComments.innerHTML = updatedReviews.map(r =>
+            `<div class="border p-2 rounded"><strong>Rating:</strong> ${r.rating}<br/>${r.comment}</div>`
+        ).join("");
+
+        // Refresh rating on main UI
+        displayCourses(filteredCourses, currentPage);
     } catch (error) {
-        alert(error.message);
+        alert("Error posting review. Try again.");
+        console.error(error);
     }
 });
 
-const starInputs = document.querySelectorAll("input[name='rating']");
-starInputs.forEach(star => {
-    star.addEventListener("change", () => {
-        selectedRating = parseInt(star.value, 10);
-    });
+// Handle modal close button
+document.getElementById("close-review-modal").addEventListener("click", () => {
+    reviewModal.classList.add("hidden");
 });
 
-fetchCourses();
+// Handle filters
+document.getElementById("filter-college").addEventListener("change", applyFilters);
+document.getElementById("filter-course").addEventListener("change", applyFilters);
+document.getElementById("search").addEventListener("input", applyFilters);
+
+function applyFilters() {
+    const college = document.getElementById("filter-college").value;
+    const course = document.getElementById("filter-course").value;
+    const keyword = document.getElementById("search").value.toLowerCase();
+
+    filteredCourses = allCourses.filter((item) => {
+        return (
+            (college === "" || item.college === college) &&
+            (course === "" || item.title === course) &&
+            (item.title.toLowerCase().includes(keyword) || item.description.toLowerCase().includes(keyword))
+        );
+    });
+
+    currentPage = 1;
+    displayCourses(filteredCourses, currentPage);
+    renderPagination(filteredCourses);
+}
+
+// Pagination
+function renderPagination(courses) {
+    const paginationContainer = document.getElementById("pagination");
+    paginationContainer.innerHTML = "";
+
+    const totalPages = Math.ceil(courses.length / itemsPerPage);
+    if (totalPages <= 1) return;
+
+    const createButton = (text, handler, disabled = false) => {
+        const btn = document.createElement("a");
+        btn.href = "#";
+        btn.innerHTML = text;
+        btn.className = `px-4 py-2 rounded no-underline ${
+            disabled ? "text-gray-400" : "text-textDark hover:bg-gray-200"
+        }`;
+        btn.onclick = (e) => {
+            e.preventDefault();
+            if (!disabled) handler();
+        };
+        return btn;
+    };
+
+    paginationContainer.appendChild(
+        createButton("&laquo;", () => {
+            currentPage = Math.max(currentPage - 1, 1);
+            displayCourses(filteredCourses, currentPage);
+            renderPagination(filteredCourses);
+        }, currentPage === 1)
+    );
+
+    for (let i = 1; i <= totalPages; i++) {
+        const pageBtn = createButton(i, () => {
+            currentPage = i;
+            displayCourses(filteredCourses, currentPage);
+            renderPagination(filteredCourses);
+        }, false);
+        if (i === currentPage) pageBtn.classList.add("bg-primary", "text-white");
+        paginationContainer.appendChild(pageBtn);
+    }
+
+    paginationContainer.appendChild(
+        createButton("&raquo;", () => {
+            currentPage = Math.min(currentPage + 1, totalPages);
+            displayCourses(filteredCourses, currentPage);
+            renderPagination(filteredCourses);
+        }, currentPage === totalPages)
+    );
+}
+
+// Optional: Modal for creating new courses
+document.getElementById("create-review-btn").addEventListener("click", () => {
+    document.getElementById("create-course-modal").classList.remove("hidden");
+});
+document.getElementById("close-modal").addEventListener("click", () => {
+    document.getElementById("create-course-modal").classList.add("hidden");
+});
+document.getElementById("cancel-modal").addEventListener("click", () => {
+    document.getElementById("create-course-modal").classList.add("hidden");
+});
+
+// Init
+function initiate() {
+    fetchCourses();
+}
+
+initiate();
