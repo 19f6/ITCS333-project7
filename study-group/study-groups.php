@@ -104,14 +104,14 @@
                     </svg>
                 </button>
             </div>
-            <form id="create-form" class="grid gap-4">
+            <form action="../backend/handlers/createGroup.php" method="POST" id="create-form" class="grid gap-4">
                 <div>
                     <label for="group-name" class="after:content-['_*'] after:text-red-500">Group Name</label>
-                    <input type="text" id="group-name" placeholder="E.g., ITCS317 Midterm prep" required class="w-full p-2 border border-borderColor rounded mt-1">
+                    <input type="text" id="group-name" name="group-name" placeholder="E.g., ITCS317 Midterm prep" required class="w-full p-2 border border-borderColor rounded mt-1">
                 </div>
                 <div>
                     <label for="college" class="after:content-['_*'] after:text-red-500">College</label>
-                    <select id="college" required class="w-full p-2 border border-borderColor rounded mt-1">
+                    <select id="college" name="college" required class="w-full p-2 border border-borderColor rounded mt-1">
                         <option value="">Select a college</option>
                         <option value="" disabled="" hidden="" selected="">Please Choose...</option> 
                         <option value="1"> College of Information Technology </option> 
@@ -128,39 +128,28 @@
                 </div>
 
                 <div>
-                    <label for="level" class="after:content-['_*'] after:text-red-500">Course</label>
-                    <select id="level" required class="w-full p-2 border border-borderColor rounded mt-1">
-                        <option value="">Select a course</option>
-                        <option value="ITCS333">ITCS333</option>
-                        <option value="ITCS325">ITCS325</option>
-                        <option value="Other">Other</option>
-                    </select>
+                    <label for="course" class="after:content-['_*'] after:text-red-500">Course</label>
+                    <input type="text" id="course" name="course" required class="w-full p-2 border border-borderColor rounded mt-1">
                 </div>
                 <div>
                     <label for="location-type" class="after:content-['_*'] after:text-red-500">Location</label>
-                    <select id="location-type" class="w-full p-2 border border-borderColor rounded mt-1">
+                    <select id="location-type" name="location-type" class="w-full p-2 border border-borderColor rounded mt-1">
                         <option value="online">Online</option>
                         <option value="in-person">In-person</option>
                         <option value="Both">Both</option>
                     </select>
-                    <input type="text" id="location" placeholder="Location details (if in-person)" class="w-full p-2 border border-borderColor rounded mt-2">
+                    <input type="text" id="location" name="location" placeholder="Location details (if in-person)" class="w-full p-2 border border-borderColor rounded mt-2">
                 </div>
                 <div>
                     <label for="description" class="after:content-['_*'] after:text-red-500">Description</label>
-                    <textarea id="description" rows="4" placeholder="Describe your study group, learning method, meeting frequency, etc." class="w-full p-2 border border-borderColor rounded mt-1"></textarea>
+                    <textarea id="description" name="description" rows="4" placeholder="Describe your study group, learning method, meeting frequency, etc." class="w-full p-2 border border-borderColor rounded mt-1"></textarea>
                 </div>
                 <div>
                     <label for="max-members">Maximum Members</label>
-                    <input type="number" id="max-members" min="3" max="50" value="6" class="w-full p-2 border border-borderColor rounded mt-1">
+                    <input type="number" id="max-members" name="max-members" min="3" max="50" value="6" class="w-full p-2 border border-borderColor rounded mt-1">
                 </div>
-                <div>
-                    <label for="gender">Gender Preference</label>
-                    <select id="gender" class="w-full p-2 border border-borderColor rounded mt-1">
-                        <option value="any">Any</option>
-                        <option value="male">Male Only</option>
-                        <option value="female">Female Only</option>
-                    </select>
-                </div>
+
+                <div id="form-errors" class="text-red-500 mb-4 hidden"></div>
                 <div class="flex gap-2 mt-2">
                     <button type="submit" class="bg-primary text-textLight py-3 border-none rounded cursor-pointer font-semibold transition-colors hover:bg-secondary flex-1">Create Group</button>
                     <button type="button" id="cancel-modal" class="bg-gray-200 text-textDark py-3 border-none rounded cursor-pointer font-semibold transition-colors hover:bg-gray-300 flex-1">Cancel</button>

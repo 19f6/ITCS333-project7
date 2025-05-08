@@ -1,11 +1,11 @@
 const groupName = document.getElementById("group-name");
 const college = document.getElementById("college");
-const level = document.getElementById("level");
+const level = document.getElementById("course");
 const locationType = document.getElementById("location-type");
 const location = document.getElementById("location");
 const description = document.getElementById("description");
 const maxMembers = document.getElementById("max-members");
-const gender = document.getElementById("gender");
+// const gender = document.getElementById("gender");
 
 // show error msg
 function showError(input, message) {
@@ -95,16 +95,16 @@ export function validateForm() {
 		clearError(maxMembers);
 	}
 
-	if (
-		gender.value !== "any" &&
-		gender.value !== "male" &&
-		gender.value !== "female"
-	) {
-		showError(gender, "Please select a valid gender preference");
-		isValid = false;
-	} else {
-		clearError(gender);
-	}
+	// if (
+	// 	gender.value !== "any" &&
+	// 	gender.value !== "male" &&
+	// 	gender.value !== "female"
+	// ) {
+	// 	showError(gender, "Please select a valid gender preference");
+	// 	isValid = false;
+	// } else {
+	// 	clearError(gender);
+	// }
 
 	return isValid;
 }
@@ -118,7 +118,7 @@ const inputs = [
 	location,
 	description,
 	maxMembers,
-	gender,
+	// gender,
 ];
 
 inputs.forEach((input) => {
@@ -134,3 +134,5 @@ locationType.addEventListener("change", () => {
 		clearError(location);
 	}
 });
+
+
