@@ -1,5 +1,5 @@
-const API_URL = "https://680d187ec47cb8074d8f8bc6.mockapi.io/courses";
-const REVIEWS_API = "https://680d187ec47cb8074d8f8bc6.mockapi.io/reviews";
+const API_URL = "https://680d187ec47cb8074d8f8bc6.mockapi.io/courses";//replit
+const REVIEWS_API = "https://680d187ec47cb8074d8f8bc6.mockapi.io/reviews";//replit
 
 let allCourses = [];
 let filteredCourses = [];
