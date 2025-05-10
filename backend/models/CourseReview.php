@@ -2,29 +2,15 @@
 
 class CourseReview {
     private $pdo;
-    private $id;
-    private $user_id;
-    private $college;
-    private $course;
-    private $description;
-    private $rating;
-    private $created_at;
 
-    public function __construct($pdo, $id = null, $user_id = null, $college = null, $course = null, $description = null, $rating = null, $created_at = null) {
+    public function __construct($pdo) {
         $this->pdo = $pdo;
-        $this->id = $id;
-        $this->user_id = $user_id;
-        $this->college = $college;
-        $this->course = $course;
-        $this->description = $description;
-        $this->rating = $rating;
-        $this->created_at = $created_at;
     }
 
     public function createCourseReview($user_id, $college, $course, $description, $rating) {
         try {
             $stmt = $this->pdo->prepare("
-                INSERT INTO coursereviews_reviews (user_id, college, course, description, rating)
+                INSERT INTO course_reviews (user_id, college, course, description, rating)
                 VALUES (?, ?, ?, ?, ?)
             ");
             $stmt->execute([$user_id, $college, $course, $description, $rating]);
@@ -39,7 +25,7 @@ class CourseReview {
         try {
             $query = "
                 SELECT r.*, u.name as user_name, u.email as user_email
-                FROM coursereviews_reviews r
+                FROM course_reviews r
                 JOIN users u ON r.user_id = u.id
                 ORDER BY r.id DESC
             ";
@@ -56,7 +42,7 @@ class CourseReview {
         try {
             $stmt = $this->pdo->prepare("
                 SELECT r.*, u.name as user_name, u.email as user_email
-                FROM coursereviews_reviews r
+                FROM course_reviews r
                 JOIN users u ON r.user_id = u.id
                 WHERE r.id = ?
             ");
@@ -72,7 +58,7 @@ class CourseReview {
         try {
             $stmt = $this->pdo->prepare("
                 SELECT r.*, u.name as user_name, u.email as user_email
-                FROM coursereviews_reviews r
+                FROM course_reviews r
                 JOIN users u ON r.user_id = u.id
                 WHERE r.user_id = ?
                 ORDER BY r.id DESC
@@ -87,21 +73,12 @@ class CourseReview {
 
     public function deleteCourseReview($id) {
         try {
-            $stmt = $this->pdo->prepare("DELETE FROM coursereviews_reviews WHERE id = ?");
+            $stmt = $this->pdo->prepare("DELETE FROM course_reviews WHERE id = ?");
             return $stmt->execute([$id]);
         } catch (PDOException $e) {
             error_log("Error deleting course review: " . $e->getMessage());
             return false;
         }
     }
-
-    // Getters
-    public function getId() { return $this->id; }
-    public function getUserId() { return $this->user_id; }
-    public function getCollege() { return $this->college; }
-    public function getCourse() { return $this->course; }
-    public function getDescription() { return $this->description; }
-    public function getRating() { return $this->rating; }
-    public function getCreatedAt() { return $this->created_at; }
 }
 ?>

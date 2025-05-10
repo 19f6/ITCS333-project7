@@ -26,10 +26,10 @@ try {
         $processedReviews[] = [
             'id' => $review['id'],
             'college' => $review['college'],
-            'course' => $review['course'],
-            'description' => $review['description'],
+            'course' => $review['course_title'],   // updated
+            'comment' => $review['review_comment'], // updated
             'rating' => $review['rating'],
-            'creator' => $review['user_name'],
+            'creator' => $review['user_name'] ?? 'Anonymous',
             'created_at' => $review['created_at'] ?? null
         ];
     }
@@ -40,14 +40,14 @@ try {
         'reviews' => $processedReviews
     ]);
 } catch (PDOException $e) {
-    error_log("Database error in review.php: " . $e->getMessage());
+    error_log("Database error in fetchReviews.php: " . $e->getMessage());
     http_response_code(500);
     echo json_encode([
         'success' => false,
         'message' => 'A database error occurred while fetching course reviews.'
     ]);
 } catch (Exception $e) {
-    error_log("General error in reviews.php: " . $e->getMessage());
+    error_log("General error in fetchReviews.php: " . $e->getMessage());
     http_response_code(500);
     echo json_encode([
         'success' => false,

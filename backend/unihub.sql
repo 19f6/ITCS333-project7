@@ -46,18 +46,14 @@ CREATE TABLE IF NOT EXISTS group_comments (
     FOREIGN KEY (group_id) REFERENCES study_groups(id)
 );
 
-CREATE TABLE IF NOT EXISTS coursereviews (
+CREATE TABLE IF NOT EXISTS course_reviews (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
-    college VARCHAR(255),
-    course VARCHAR(255),
-    description TEXT,
-);
-CREATE TABLE IF NOT EXISTS coursereviews_reviews (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT NOT NULL,
-    college VARCHAR(255),
-    course VARCHAR(255),
-    description TEXT,
-    rating INTEGER CHECK(rating >= 0 AND rating <= 10)
+    college VARCHAR(255) NOT NULL,
+    course_title VARCHAR(255) NOT NULL,
+    review_comment TEXT,
+    rating INT NOT NULL CHECK (rating >= 1 AND rating <= 5),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    INDEX idx_user_course (user_id, course_title)
 );
