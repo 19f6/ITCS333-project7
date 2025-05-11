@@ -12,17 +12,8 @@
     <script src="js/fetchdetails.js" defer></script>
 </head>
 <body class="bg-background font-poppins text-textDark">
-    <nav class="flex w-full justify-between items-center flex-wrap p-4 md:px-12 shadow-md bg-primary">
-        <a class="text-2xl font-semibold text-textLight no-underline" href="#home">UniHub</a>
-        <ul class="flex flex-col md:flex-row list-none p-0 m-0 gap-4 md:gap-8 w-full md:w-auto mt-4 md:mt-0">
-            <li><a href="#" class="text-textLight no-underline py-2 block md:inline transition-colors hover:text-secondary">Calendar</a></li>
-            <li><a href="#" class="text-textLight no-underline py-2 block md:inline transition-colors hover:text-secondary">Study Groups</a></li>
-            <li><a href="#" class="text-textLight no-underline py-2 block md:inline transition-colors hover:text-secondary">Course Reviews</a></li>
-            <li><a href="#" class="text-textLight no-underline py-2 block md:inline transition-colors hover:text-secondary">News</a></li>
-            <li><a href="#" class="text-textLight no-underline py-2 block md:inline transition-colors hover:text-secondary">Club Activities</a></li>
-            <li><a href="#" class="text-textLight no-underline py-2 block md:inline transition-colors hover:text-secondary">Marketplace</a></li>
-        </ul>
-    </nav>
+    <!-- Navbar -->
+    <?php include '../nav.php'; ?>
     
     <div class="content-container max-w-7xl mx-auto p-6 flex flex-col md:flex-row gap-10 items-start">
         <div class="flex-1 bg-white rounded-lg shadow-md p-6">

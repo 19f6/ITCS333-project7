@@ -16,25 +16,8 @@
     <script src="js/tailwind.js" defer></script>
 </head>
 <body class="bg-background font-poppins text-textDark">
-
-    <nav id="navbar" class="flex w-full justify-between items-center flex-wrap p-4 md:px-12 shadow-md bg-primary">
-        <div class="flex justify-between items-center w-full md:w-auto">
-            <a class="home text-2xl font-semibold text-textLight no-underline" href="#home">UniHub</a>
-            <button id="menu-toggle" class="md:hidden text-textLight focus:outline-none">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-            </button>
-        </div>
-        <ul id="menu-items" class="hidden md:flex flex-col md:flex-row list-none p-0 m-0 gap-2 md:gap-8 w-full md:w-auto mt-4 md:mt-0">
-            <li><a href="../event calander/event.html" class="text-textLight no-underline py-2 block md:inline transition-colors hover:text-secondary">Calender</a></li>
-            <li><a href="../study-group/study-groups.html" class="text-textLight no-underline py-2 block md:inline transition-colors hover:text-secondary">Study Groups</a></li>
-            <li><a href="../course reviews/CourseReviews.html" class="text-textLight no-underline py-2 block md:inline transition-colors hover:text-secondary">Course Reviews</a></li>
-            <li><a href="../Campus-News/index.html" class="text-textLight no-underline py-2 block md:inline transition-colors hover:text-secondary">News</a></li>
-            <li><a href="../Course Notes/index.html" class="text-textLight no-underline py-2 block md:inline transition-colors hover:text-secondary">Notes</a></li>
-            <li><a href="../StudentMarketPlace/index.html" class="text-textLight no-underline py-2 block md:inline transition-colors hover:text-secondary">Marketplace</a></li>
-        </ul>
-    </nav>
+    <!-- Navbar -->
+    <?php include '../nav.php'; ?>
     
     <div class="flex flex-col items-start">
         <div class="w-full px-5 md:px-20 my-6">
