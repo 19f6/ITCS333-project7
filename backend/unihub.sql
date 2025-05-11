@@ -51,7 +51,7 @@ CREATE TABLE IF NOT EXISTS course_reviews (
     user_id INT NOT NULL,
     college VARCHAR(255) NOT NULL,
     course_title VARCHAR(255) NOT NULL,
-    review_comment TEXT,
+    description TEXT NOT NULL,
     rating INT NOT NULL CHECK (rating >= 1 AND rating <= 5),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id),

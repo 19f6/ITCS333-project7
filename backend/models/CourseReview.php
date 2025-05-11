@@ -10,13 +10,14 @@ class CourseReview {
     public function createCourseReview($user_id, $college, $course, $description, $rating) {
         try {
             $stmt = $this->pdo->prepare("
-                INSERT INTO course_reviews (user_id, college, course, description, rating)
+                INSERT INTO course_reviews (user_id, college, course_title, description, rating)
                 VALUES (?, ?, ?, ?, ?)
             ");
             $stmt->execute([$user_id, $college, $course, $description, $rating]);
             return $this->pdo->lastInsertId();
         } catch (PDOException $e) {
             error_log("Error creating course review: " . $e->getMessage());
+            echo($e->getMessage());
             return false;
         }
     }

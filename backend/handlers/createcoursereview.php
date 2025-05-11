@@ -25,12 +25,12 @@ $user_id = $_SESSION['user_id'];
 $college_id = isset($_POST['college']) ? trim($_POST['college']) : '';
 $course = isset($_POST['course']) ? trim($_POST['course']) : ''; 
 $description = isset($_POST['description']) ? trim($_POST['description']) : '';
-$rating = isset($_POST['rating']) ? trim($_POST['rating']) : '';
+$rating = isset($_POST['rating']) ? trim($_POST['rating']) : 5;
 
 // Validation
 if (empty($college_id) || empty($course) || empty($rating) || empty($description)) {
     http_response_code(400); // Bad Request
-    echo json_encode(['success' => false, 'message' => 'Please fill in all required fields.']);
+    echo json_encode(['success' => false, 'message' => "Please fill in all required fields. $college_id"]);
     exit;
 }
 

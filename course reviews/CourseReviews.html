@@ -91,36 +91,46 @@
               </svg>
           </button>
       </div>
-      <form id="create-form" class="grid gap-4">
-          <div>
-              <label for="course-name" class="after:content-['_*'] after:text-red-500">Course Name</label>
-              <input type="text" id="course-name" placeholder="E.g., ITCS317" required class="w-full p-2 border border-borderColor rounded mt-1">
-          </div>
-          <div>
-              <label for="college" class="after:content-['_*'] after:text-red-500">College</label>
-              <select id="college" required class="w-full p-2 border border-borderColor rounded mt-1">
-                  <option value="">Select a college</option>
-                  <option value="" disabled selected hidden>Please Choose...</option>
-                  <option value="1"> College of Information Technology </option> 
-                  <option value="2"> College of Arts </option> 
-                  <option value="3"> College of Law </option>
-                  <option value="4"> College of Engineering </option>
-                  <option value="5"> College of Physical Education </option>
-                  <option value="6"> College of Health and Sport Sciences </option>
-                  <option value="7"> Languages Institute </option>
-                  <option value="8"> College of Applied Studies </option>
-                  <option value="9"> College of Science </option> 
-                  <option value="10"> College of Business Administration </option>
-              </select>
-          </div>
-          <div>
-              <label for="description" class="after:content-['_*'] after:text-red-500">Description</label>
-              <textarea id="description" rows="4" placeholder="Add your commemnts." class="w-full p-2 border border-borderColor rounded mt-1"></textarea>
-          </div>
-          <div class="flex gap-2 mt-2">
-              <button type="submit" class="bg-primary text-textLight py-3 border-none rounded cursor-pointer font-semibold transition-colors hover:bg-secondary flex-1">Create Review</button>
-              <button type="button" id="cancel-modal" class="bg-gray-200 text-textDark py-3 border-none rounded cursor-pointer font-semibold transition-colors hover:bg-gray-300 flex-1">Cancel</button>
-          </div>
+      <form action="../backend/handlers/createcoursereview.php" method="POST" id="create-form" class="grid gap-4">
+        <div>
+            <label for="course-name" class="after:content-['_*'] after:text-red-500">Course Name</label>
+            <input type="text" id="course-name" name="course" placeholder="E.g., ITCS317" required class="w-full p-2 border border-borderColor rounded mt-1">
+        </div>
+        <div>
+            <label for="college" class="after:content-['_*'] after:text-red-500">College</label>
+            <select id="college" name="college" required class="w-full p-2 border border-borderColor rounded mt-1">
+                <option value="" disabled selected hidden>Please Choose...</option>
+                <option value="1">College of Information Technology</option>
+                <option value="2">College of Arts</option>
+                <option value="3">College of Law</option>
+                <option value="4">College of Engineering</option>
+                <option value="5">College of Physical Education</option>
+                <option value="6">College of Health and Sport Sciences</option>
+                <option value="7">Languages Institute</option>
+                <option value="8">College of Applied Studies</option>
+                <option value="9">College of Science</option>
+                <option value="10">College of Business Administration</option>
+            </select>
+        </div>
+        <div>
+            <label for="rating" class="after:content-['_*'] after:text-red-500">Rating</label>
+            <select id="rating" name="rating" required class="w-full p-2 border border-borderColor rounded mt-1">
+                <option value="" disabled selected hidden>Select a rating</option>
+                <option value="1">1 - Poor</option>
+                <option value="2">2 - Fair</option>
+                <option value="3">3 - Average</option>
+                <option value="4">4 - Good</option>
+                <option value="5">5 - Excellent</option>
+            </select>
+        </div>
+        <div>
+            <label for="description" class="after:content-['_*'] after:text-red-500">Description</label>
+            <textarea id="description" name="description" rows="4" placeholder="Add your comments." required class="w-full p-2 border border-borderColor rounded mt-1"></textarea>
+        </div>
+        <div class="flex gap-2 mt-2">
+            <button type="submit" class="bg-primary text-textLight py-3 border-none rounded cursor-pointer font-semibold transition-colors hover:bg-secondary flex-1">Create Review</button>
+            <button type="button" id="cancel-modal" class="bg-gray-200 text-textDark py-3 border-none rounded cursor-pointer font-semibold transition-colors hover:bg-gray-300 flex-1">Cancel</button>
+        </div>
       </form>
   </div>
 </div>
