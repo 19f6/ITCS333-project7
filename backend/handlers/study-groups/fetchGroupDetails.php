@@ -1,9 +1,9 @@
 <?php
 session_start();
 
-require_once '../config/db.php';
-require_once '../models/StudyGroup.php';
-require_once '../models/GroupComment.php';
+require_once '../../config/db.php';
+require_once '../../models/StudyGroup.php';
+require_once '../../models/GroupComment.php';
 
 header('Content-Type: application/json');
 
@@ -61,12 +61,15 @@ try {
     // fetch comments 
     $comments = $groupComment->getCommentsByGroupId($group_id);
 
+    $isAdmin = $_SESSION['user_id'] == $groupDetails->user_id;
+
     http_response_code(200);
     echo json_encode([
         'success' => true,
         'group' => $groupDetails,
         'members' => $members,
-        'comments' => $comments
+        'comments' => $comments,
+        "current_userid" =>  $_SESSION['user_id'],
     ]);
 
 } catch (PDOException $e) {

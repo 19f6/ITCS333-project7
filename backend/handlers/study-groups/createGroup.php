@@ -2,9 +2,9 @@
 
 session_start();
 
-require_once '../config/db.php'; 
-require_once '../models/User.php';   
-require_once '../models/StudyGroup.php';
+require_once '../../config/db.php'; 
+require_once '../../models/User.php';   
+require_once '../../models/StudyGroup.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405); // method not allowed

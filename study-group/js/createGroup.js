@@ -74,7 +74,7 @@ createForm.addEventListener("submit", async (e) => {
 	}
 
 	try {
-		const response = await fetch("../backend/handlers/createGroup.php", {
+		const response = await fetch("../backend/handlers/study-groups/createGroup.php", {
 			method: "POST",
 			body: formData,
 		});
