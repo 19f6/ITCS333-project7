@@ -16,7 +16,7 @@ async function fetchGroupDetails() {
 
 	try {
 		const response = await fetch(
-			`../backend/handlers/fetchGroupDetails.php?id=${groupId}`
+			`../backend/handlers/study-groups/fetchGroupDetails.php?id=${groupId}`
 		);
 
 		if (!response.ok) {
@@ -43,7 +43,7 @@ async function fetchGroupDetails() {
 			throw new Error(data.message || "Failed to fetch group details");
 		}
 
-		displayGroupDetails(data.group, data.members, data.comments);
+		displayGroupDetails(data.group, data.members, data.comments, data.current_userid);
 	} catch (error) {
 		console.error("Error fetching group details:", error);
 		displayError(`Failed to load group details: ${error.message}`);
@@ -66,7 +66,7 @@ function displayError(message) {
     `;
 }
 
-function displayGroupDetails(group, members, comments) {
+function displayGroupDetails(group, members, comments, current_userid) {
 	document.title = `${group.title} | UniHub`;
 
 	// Title and course
@@ -130,6 +130,17 @@ function displayGroupDetails(group, members, comments) {
 		});
 	}
 
+	// Edit and Delete buttons visibility
+	const editDeleteContainer = document.getElementById("btns");
+	if (editDeleteContainer) {
+		if (current_userid == group.user_id) {
+			console.log("ok!");
+			editDeleteContainer.style.display = "flex";
+		} else {
+			editDeleteContainer.style.display = "none";
+		}
+	}
+
 	// Comments
 	const commentsContainer = document.getElementById("comments-container");
 	const commentCountElement = document.getElementById("comments-count");
@@ -138,7 +149,7 @@ function displayGroupDetails(group, members, comments) {
 	if (commentsContainer) {
 		const form = commentsContainer.querySelector("form");
 		commentsContainer.innerHTML = "";
-		if (form) commentsContainer.appendChild(form); // Re-append the form if needed
+		if (form) commentsContainer.appendChild(form); 
 
 		comments.forEach((comment) => {
 			const date = new Date(comment.created_at);
@@ -177,16 +188,19 @@ async function submitComment(groupId) {
 	if (!commentContent) return;
 
 	try {
-		const response = await fetch("../backend/handlers/addGroupComment.php", {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify({
-				group_id: groupId,
-				content: commentContent,
-			}),
-		});
+		const response = await fetch(
+			"../backend/handlers/study-groups/addGroupComment.php",
+			{
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({
+					group_id: groupId,
+					content: commentContent,
+				}),
+			}
+		);
 
 		const data = await response.json();
 		console.log("okayyyyyy");

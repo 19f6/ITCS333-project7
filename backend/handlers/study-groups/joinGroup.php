@@ -2,8 +2,8 @@
 
 session_start();
 
-require_once '../config/db.php';
-require_once '../models/StudyGroup.php';
+require_once '../../config/db.php';
+require_once '../../models/StudyGroup.php';
 
 header('Content-Type: application/json');
 
@@ -43,10 +43,9 @@ $group_id = $input['group_id'];
 $user_id = $_SESSION['user_id'];
 
 try {
-    // Connect to database
     $pdo = connectDB();
     
-    // Check if group exists and is not full
+    // check if group exists and is not full
     $stmt = $pdo->prepare("SELECT sg.*, COUNT(gm.id) as current_members 
                           FROM study_groups sg 
                           LEFT JOIN group_members gm ON sg.id = gm.group_id 
@@ -64,7 +63,7 @@ try {
         exit;
     }
     
-    // Check if group is full
+    // check if group is full
     if ($group['current_members'] >= $group['max_members']) {
         http_response_code(400); // Bad Request
         echo json_encode([
@@ -74,7 +73,7 @@ try {
         exit;
     }
     
-    // Check if user already joined this group
+    // check if user already joined this group
     $stmt = $pdo->prepare("SELECT id FROM group_members WHERE group_id = ? AND user_id = ?");
     $stmt->execute([$group_id, $user_id]);
     
@@ -87,7 +86,7 @@ try {
         exit;
     }
     
-    // Add user to group
+    // add user to group
     $stmt = $pdo->prepare("INSERT INTO group_members (group_id, user_id, joined_at) VALUES (?, ?, NOW())");
     $result = $stmt->execute([$group_id, $user_id]);
     

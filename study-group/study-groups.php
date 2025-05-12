@@ -87,7 +87,7 @@
                     </svg>
                 </button>
             </div>
-            <form action="../backend/handlers/createGroup.php" method="POST" id="create-form" class="grid gap-4">
+            <form action="../backend/handlers/study-groups/createGroup.php" method="POST" id="create-form" class="grid gap-4">
                 <div>
                     <label for="group-name" class="after:content-['_*'] after:text-red-500">Group Name</label>
                     <input type="text" id="group-name" name="group-name" placeholder="E.g., ITCS317 Midterm prep" required class="w-full p-2 border border-borderColor rounded mt-1">

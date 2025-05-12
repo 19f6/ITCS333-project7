@@ -18,12 +18,12 @@ if (session_status() === PHP_SESSION_NONE) {
       <?php if (isset($_SESSION['user_id'])): ?>
         <!-- Logout Button -->
         <li>
-          <a href="login.php" class="bg-white text-[#7c7fd9] font-medium px-4 py-2 rounded-lg hover:bg-gray-100 transition-colors">Log out</a>
+          <a href="logout.php" class="bg-white text-[#7c7fd9] font-medium px-4 py-2 rounded-lg hover:bg-gray-100 transition-colors">Log out</a>
         </li>
       <?php else: ?>
         <!-- Login Button -->
         <li>
-          <a href="login.php" class="bg-white text-[#7c7fd9] font-medium px-4 py-2 rounded-lg hover:bg-gray-100 transition-colors">Login</a>
+          <a href="/ITCS333-project7/login.php" class="bg-white text-[#7c7fd9] font-medium px-4 py-2 rounded-lg hover:bg-gray-100 transition-colors">Login</a>
         </li>
       <?php endif; ?>
     </ul>

@@ -1,4 +1,4 @@
-const API_URL = "../backend/handlers/fetchGroups.php";
+const API_URL = "../backend/handlers/study-groups/fetchGroups.php";
 
 const groupsPerPage = 5;
 
@@ -144,7 +144,7 @@ function displayGroups(groups, page = 1) {
 
 async function joinGroup(groupId) {
 	try {
-		const response = await fetch(`../backend/handlers/joinGroup.php`, {
+		const response = await fetch(`../backend/handlers/study-groups/joinGroup.php`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
