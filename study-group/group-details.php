@@ -80,8 +80,7 @@
             <div class="my-6">
                 <h3 class="text-xl font-semibold mb-4">Members</h3>
                 <div id="members-container" class="flex flex-wrap gap-2">
-                    <!-- Members will be added dynamically here -->
-                    <div class="flex items-center bg-background py-2 px-4 rounded-full">
+                <div class="flex items-center bg-background py-2 px-4 rounded-full">
                         <div class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center mr-2 font-semibold">...</div>
                         <span></span>
                     </div>
@@ -95,8 +94,7 @@
             </div>
             
             <div id="comments-container">
-                <!-- Comments will be added dynamically here -->
-                <div class="bg-white rounded-lg shadow-sm p-4 mb-4" id="commentsContainer">
+            <div class="bg-white rounded-lg shadow-sm p-4 mb-4" id="commentsContainer">
                     <div class="flex justify-between mb-2">
                         <span class="font-semibold"></span>
                         <span class="text-gray-500 text-sm"></span>

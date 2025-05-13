@@ -34,6 +34,15 @@ if (empty($group_name) || empty($college_id) || empty($course) || empty($locatio
     exit;
 }
 
+$course = strtoupper(preg_replace('/\s+/', '', $course)); 
+
+if (!preg_match('/^[A-Z]{4}\d{3}$/', $course)) {
+    http_response_code(400); // Bad Request
+    echo json_encode(['success' => false, 'message' => 'Invalid course code.']);
+    exit;
+}
+
+
 if ($max_members !== null && ($max_members < 3 || $max_members > 50)) {
     http_response_code(400); // Bad Request
     echo json_encode(['success' => false, 'message' => 'Maximum members must be between 3 and 50.']);

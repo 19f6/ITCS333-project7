@@ -39,17 +39,27 @@ $location_details = isset($data['location_details']) ? trim($data['location_deta
 $max_members = isset($data['max_members']) ? filter_var($data['max_members'], FILTER_VALIDATE_INT) : null;
 
 // Input validation
-if (empty($title)) {
-    http_response_code(400);
-    echo json_encode(['success' => false, 'message' => 'Group title is required']);
+if (empty($title) || empty($college_id) || empty($course) || empty($location_type) || empty($description)) {
+    http_response_code(400); // Bad Request
+    echo json_encode(['success' => false, 'message' => 'Please fill in all required fields.']);
     exit;
 }
 
-if ($max_members !== null && $max_members < 3) {
-    http_response_code(400);
-    echo json_encode(['success' => false, 'message' => 'Maximum members must be at least 3']);
+$course = strtoupper(preg_replace('/\s+/', '', $course)); 
+
+if (!preg_match('/^[A-Z]{4}\d{3}$/', $course)) {
+    http_response_code(400); // Bad Request
+    echo json_encode(['success' => false, 'message' => 'Invalid course code.']);
     exit;
 }
+
+
+if ($max_members !== null && ($max_members < 3 || $max_members > 50)) {
+    http_response_code(400); // Bad Request
+    echo json_encode(['success' => false, 'message' => 'Maximum members must be between 3 and 50.']);
+    exit;
+}
+
 
 try {
     $pdo = connectDB();

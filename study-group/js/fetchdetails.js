@@ -18,7 +18,7 @@ async function fetchGroupDetails() {
 		const response = await fetch(
 			`../backend/handlers/study-groups/fetchGroupDetails.php?id=${groupId}`
 		);
-
+		console.log(response);
 		if (!response.ok) {
 			if (response.status === 401) {
 				displayError("You must be logged in to view this group.");
