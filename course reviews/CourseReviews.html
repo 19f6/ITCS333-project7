@@ -10,7 +10,7 @@
    <script src="review.js" defer></script>
    <script src="tailwindreview.js"></script>
   <!-- <link rel="stylesheet" href="CourseReviews.css"> -->
- 
+
 </head>
 
 <body class="bg-background font-poppins text-textDark">
@@ -33,7 +33,6 @@
       <li><a href="../StudentMarketPlace/index.html" class="text-textLight no-underline py-2 block md:inline transition-colors hover:text-secondary">Marketplace</a></li>
   </ul>
 </nav>
-<button id="clear-filters" class="ml-2 text-sm text-blue-500 underline">Clear Filters</button>
 
 
 <div class="flex flex-col items-start">
@@ -45,16 +44,12 @@
         <div class="flex mb-6 border-b-2 border-borderColor">
             <div class="px-8 py-4 cursor-pointer transition-all duration-300 border-b-3 border-primary font-semibold">Reviews</div>
         </div>
-       
-        
+
+
         <div class="flex flex-col md:flex-row flex-wrap gap-4 mb-6">
-          <select class="p-2 border border-borderColor rounded flex-1" id="filter-college">
-              <option value="">Select a college</option>
-          </select>
-          <select class="p-2 border border-borderColor rounded flex-1" id="filter-course">
-              <option value="">All Courses</option>
-          </select>
-          <input type="text" id="search" placeholder="Search by keyword..." class="p-2 border border-borderColor rounded md:flex-2">
+        
+            <input type="text" id="search" placeholder="Search for courses or colleges..." />
+            <button id="search-btn">Search</button>
       </div>
       <div id="course-container">
       </div>
@@ -79,7 +74,7 @@
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
   </svg>
 </button>
-  
+
 
 <div id="create-course-modal" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 hidden">
   <div class="bg-white p-8 rounded-lg shadow-lg max-w-md w-full max-h-90vh overflow-y-auto mx-4">
@@ -150,7 +145,7 @@
       </div>
       <!-- Hidden input field to store courseId -->
       <input type="hidden" id="review-course-id">
-  
+
       <textarea id="user-comment" rows="4" class="w-full p-2 border border-borderColor rounded mt-2" placeholder="Write your comment here..."></textarea>
       <button class="mt-4 bg-primary text-white py-2 px-4 rounded hover:bg-secondary" onclick="submitReview()">Submit Review</button>
     </div>
@@ -159,10 +154,10 @@
     <div class="bg-white p-6 rounded w-full max-w-2xl max-h-[90vh] overflow-y-auto">
       <button id="close-review-modal" class="text-gray-500 float-right">X</button>
       <div id="review-course-details" class="mb-4"></div>
-  
+
       <h4 class="text-lg font-semibold mb-2">Existing Reviews</h4>
       <div id="review-comments" class="mb-4 space-y-2"></div>
-  
+
       <h4 class="text-lg font-semibold mb-2">Add Your Review</h4>
       <form id="review-form">
         <label class="block mb-2">
@@ -177,8 +172,8 @@
       </form>
     </div>
   </div>
-  
-  
+
+
 
 </body>
 </html>
