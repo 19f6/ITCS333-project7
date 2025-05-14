@@ -120,7 +120,7 @@ function displayGroups(groups, page = 1) {
 		groupElement.addEventListener("click", (e) => {
 			e.preventDefault();
 			e.stopPropagation();
-			window.location.href = `/ITCS333-project7/study-group/group-details.php?id=${group.id}`;
+			window.location.href = `group-details.php?id=${group.id}`;
 		});
 
 		// Disable join button if group full

@@ -37,6 +37,20 @@ $description = isset($data['description']) ? trim($data['description']) : null;
 $location = isset($data['location']) ? trim($data['location']) : null;
 $location_details = isset($data['location_details']) ? trim($data['location_details']) : null;
 $max_members = isset($data['max_members']) ? filter_var($data['max_members'], FILTER_VALIDATE_INT) : null;
+$college_mapping = [
+    "1" => "College of Information Technology",
+    "2" => "College of Arts",
+    "3" => "College of Law",
+    "4" => "College of Engineering",
+    "5" => "College of Physical Education",
+    "6" => "College of Health and Sport Sciences",
+    "7" => "Languages Institute",
+    "8" => "College of Applied Studies",
+    "9" => "College of Science",
+    "10" => "College of Business Administration"
+];
+
+$college_name = isset($college_mapping[$college_id]) ? $college_mapping[$college_id] : 'Unknown College';
 
 // Input validation
 if (empty($title) || empty($college_id) || empty($course) || empty($location_type) || empty($description)) {
