@@ -16,15 +16,16 @@
             background: '#f8fafc',
             text: { light: '#ffffff', dark: '#0f172a' },
             border: '#cbd5e1',
-            card: '#ffffff'
+            card: '#ffffff',
+            buttonbg: '#9C9FE5'
           }
         }
       }
     }
   </script>
 </head>
-<body class="bg-gray-100 text-gray-800">
 
+<body class="bg-gray-100 text-gray-800">
   <header class="bg-white shadow p-4">
     <div class="max-w-7xl mx-auto flex justify-between items-center">
       <h1 class="text-2xl font-bold text-primary">Course Notes</h1>
@@ -47,147 +48,126 @@
     </div>
   </section>
 
-  <div id="loading" class="text-center py-6 hidden">Loading...</div>
-
   <div id="notes-list" class="max-w-7xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pb-10">
     <!-- Notes will be rendered here -->
   </div>
 
-  <div id="pagination" class="max-w-7xl mx-auto px-4 flex justify-center gap-4 mb-10">
-    <button id="page-1" class="px-3 py-1 bg-primary text-white rounded hover:bg-secondary transition">1</button>
-    <button id="page-2" class="px-3 py-1 bg-primary text-white rounded hover:bg-secondary transition">2</button>
-    <button id="page-next" class="px-3 py-1 bg-primary text-white rounded hover:bg-secondary transition">Next</button>
-  </div>
+  <div id="pagination" class="max-w-7xl mx-auto px-4 pb-12 flex justify-center space-x-2"></div>
 
   <script>
-  const notesList = document.getElementById('notes-list');
-  const loading = document.getElementById('loading');
-  const searchInput = document.getElementById('search-input');
-  const filterCourse = document.getElementById('filter-course');
-  const sortNotes = document.getElementById('sort-notes');
-  const pagination = document.getElementById('pagination');
-  const page1Btn = document.getElementById('page-1');
-  const page2Btn = document.getElementById('page-2');
-  const nextBtn = document.getElementById('page-next');
+    const searchInput = document.getElementById('search-input');
+    const filterCourse = document.getElementById('filter-course');
+    const sortNotes = document.getElementById('sort-notes');
+    const notesList = document.getElementById('notes-list');
+    const pagination = document.getElementById('pagination');
 
-  let notes = [];
-  let currentPage = 1;
-  const notesPerPage = 3;
-  let filteredNotes = [];
+    let notes = [];
+    let filteredNotes = [];
+    let currentPage = 1;
+    const notesPerPage = 3;
 
-  document.addEventListener('DOMContentLoaded', fetchNotes);
-  searchInput.addEventListener('input', applyFilters);
-  filterCourse.addEventListener('change', applyFilters);
-  sortNotes.addEventListener('change', applyFilters);
-  page1Btn.addEventListener('click', () => changePage(1));
-  page2Btn.addEventListener('click', () => changePage(2));
-  nextBtn.addEventListener('click', () => changePage(currentPage + 1));
+    document.addEventListener('DOMContentLoaded', fetchNotes);
+    searchInput.addEventListener('input', applyFilters);
+    filterCourse.addEventListener('change', applyFilters);
+    sortNotes.addEventListener('change', applyFilters);
 
-  async function fetchNotes() {
-  loading.classList.remove('hidden');
-  try {
-    const response = await fetch('my-notes.json');
-    if (!response.ok) throw new Error('Failed to fetch notes');
-
-    const data = await response.json();
-    notes = data;
-
-    // Now load any added notes from localStorage
-    const storedNotes = JSON.parse(localStorage.getItem('courseNotes')) || [];
-
-    // Merge fetched notes with stored notes (without duplicates)
-    const storedNoteIds = storedNotes.map(n => n.id);
-    notes = notes.filter(n => !storedNoteIds.includes(n.id)).concat(storedNotes);
-
-  } catch (error) {
-    console.error(error);
-    // If fetch fails, load from localStorage only
-    const storedNotes = localStorage.getItem('courseNotes');
-    notes = storedNotes ? JSON.parse(storedNotes) : [];
-  }
-  loading.classList.add('hidden');
-  applyFilters();
-}
-
-  function applyFilters() {
-    filteredNotes = notes;
-
-    const searchQuery = searchInput.value.toLowerCase();
-    if (searchQuery) {
-      filteredNotes = filteredNotes.filter(note =>
-        note.title.toLowerCase().includes(searchQuery) ||
-        note.course.toLowerCase().includes(searchQuery)
-      );
+    async function fetchNotes() {
+      try {
+        const response = await fetch('read.php');
+        notes = await response.json();
+        applyFilters();
+      } catch (err) {
+        notesList.innerHTML = '<p class="text-red-500">Failed to load notes.</p>';
+        console.error(err);
+      }
     }
 
-    const courseFilter = filterCourse.value;
-    if (courseFilter) {
-      filteredNotes = filteredNotes.filter(note => note.course === courseFilter);
+    function applyFilters() {
+      filteredNotes = [...notes];
+
+      const query = searchInput.value.trim().toLowerCase();
+      if (query) {
+        filteredNotes = filteredNotes.filter(note =>
+          (note.title && note.title.toLowerCase().includes(query)) ||
+          (note.course_code && note.course_code.toLowerCase().includes(query))
+        );
+      }
+
+      const selectedCourse = filterCourse.value;
+      if (selectedCourse) {
+        filteredNotes = filteredNotes.filter(note => note.course_code === selectedCourse);
+      }
+
+      if (sortNotes.value === 'newest') {
+        filteredNotes.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+      } else if (sortNotes.value === 'oldest') {
+        filteredNotes.sort((a, b) => new Date(a.created_at) - new Date(b.created_at));
+      }
+
+      currentPage = 1;
+      renderNotesPage();
     }
 
-    if (sortNotes.value === 'newest') {
-      filteredNotes.sort((a, b) => new Date(b.date) - new Date(a.date));
-    } else if (sortNotes.value === 'oldest') {
-      filteredNotes.sort((a, b) => new Date(a.date) - new Date(b.date));
-    }
+    function renderNotesPage() {
+      notesList.innerHTML = '';
+      const start = (currentPage - 1) * notesPerPage;
+      const end = start + notesPerPage;
+      const pageNotes = filteredNotes.slice(start, end);
 
-    currentPage = 1; // Reset to first page
-    renderNotesPage();
-  }
+      if (pageNotes.length === 0) {
+        notesList.innerHTML = '<p class="text-gray-500 text-center col-span-3">No notes found.</p>';
+        pagination.innerHTML = '';
+        return;
+      }
 
-  function renderNotesPage() {
-    notesList.innerHTML = '';
-
-    if (filteredNotes.length === 0) {
-      notesList.innerHTML = '<p class="text-center col-span-3 text-gray-600">No notes found.</p>';
-      pagination.style.display = 'none';
-      return;
-    }
-
-    pagination.style.display = 'flex';
-
-    const startIndex = (currentPage - 1) * notesPerPage;
-    const endIndex = startIndex + notesPerPage;
-    const notesToShow = filteredNotes.slice(startIndex, endIndex);
-
-    notesToShow.forEach(note => {
-      const noteCard = `
-        <article class="bg-white p-4 rounded shadow hover:shadow-md transition flex flex-col justify-between">
+      pageNotes.forEach(note => {
+        const card = document.createElement('article');
+        card.className = 'bg-white p-4 rounded shadow hover:shadow-md transition flex flex-col justify-between';
+        card.innerHTML = `
           <div>
             <h2 class="text-lg font-semibold mb-2">${note.title}</h2>
-            <p class="text-sm text-gray-600 mb-2">Course: <span class="font-medium">${note.course}</span></p>
+            <p class="text-sm text-gray-600 mb-2">Course: <span class="font-medium">${note.course_code}</span></p>
             <p class="text-sm text-gray-700 mb-4">${note.summary || ''}</p>
           </div>
           <div class="flex justify-between items-end mt-auto">
-            <small class="text-gray-400 text-xs">${new Date(note.date).toLocaleDateString()}</small>
+            <small class="text-gray-400 text-xs">${new Date(note.created_at).toLocaleDateString()}</small>
             <a href="note-detail.html?id=${note.id}" class="text-sm text-secondary hover:underline">View Details</a>
           </div>
-        </article>
-      `;
-      notesList.innerHTML += noteCard;
-    });
+        `;
+        notesList.appendChild(card);
+      });
 
-    updatePaginationButtons();
-  }
+      renderPagination();
+    }
 
-  function changePage(page) {
-    const totalPages = Math.ceil(filteredNotes.length / notesPerPage);
-    if (page < 1 || page > totalPages) return;
-    currentPage = page;
-    renderNotesPage();
-  }
+    function renderPagination() {
+      const totalPages = Math.ceil(filteredNotes.length / notesPerPage);
+      pagination.innerHTML = '';
 
-  function updatePaginationButtons() {
-    const totalPages = Math.ceil(filteredNotes.length / notesPerPage);
+      if (totalPages <= 1) return;
 
-    page1Btn.disabled = currentPage === 1;
-    page2Btn.disabled = currentPage === 2 || totalPages < 2;
-    nextBtn.disabled = currentPage >= totalPages;
+      for (let i = 1; i <= totalPages; i++) {
+        const btn = document.createElement('button');
+        btn.textContent = i;
+        btn.className = `px-3 py-1 rounded text-white font-medium ${i === currentPage ? 'bg-primary' : 'bg-secondary hover:bg-primary'}`;
+        btn.addEventListener('click', () => {
+          currentPage = i;
+          renderNotesPage();
+        });
+        pagination.appendChild(btn);
+      }
 
-    page2Btn.style.display = totalPages >= 2 ? 'inline-block' : 'none';
-    nextBtn.style.display = totalPages > 1 ? 'inline-block' : 'none';
-  }
-</script>
-
+      if (currentPage < totalPages) {
+        const nextBtn = document.createElement('button');
+        nextBtn.textContent = 'Next';
+        nextBtn.className = 'px-3 py-1 rounded text-white font-medium bg-secondary hover:bg-primary';
+        nextBtn.addEventListener('click', () => {
+          currentPage++;
+          renderNotesPage();
+        });
+        pagination.appendChild(nextBtn);
+      }
+    }
+  </script>
 </body>
 </html>
