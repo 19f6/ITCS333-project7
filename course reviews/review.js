@@ -3,26 +3,25 @@ document.addEventListener('DOMContentLoaded', () => {
     const createModal = document.getElementById('create-course-modal');
     const closeModalButton = document.getElementById('close-modal');
     const createForm = document.getElementById('create-form');
+    const reviewContainer = document.getElementById('course-container');
     let currentEditId = null;
+    let currentPage = 1;
 
-    // Show modal on button click
     createButton.addEventListener('click', () => {
         createModal.classList.remove('hidden');
-        currentEditId = null; // Reset for new review
+        currentEditId = null;
     });
 
-    // Close modal
     closeModalButton.addEventListener('click', () => {
         createModal.classList.add('hidden');
     });
 
-    // Handle form submission
     createForm.addEventListener('submit', async (event) => {
-        event.preventDefault(); // Prevent default form submission
+        event.preventDefault();
 
         const formData = new FormData(createForm);
         if (currentEditId) {
-            formData.append('id', currentEditId); // Add review ID for editing
+            formData.append('id', currentEditId);
         }
 
         try {
@@ -32,11 +31,11 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             const result = await response.json();
-            alert(result.message); // Notify user of success/failure
+            alert(result.message);
             if (result.success) {
-                createModal.classList.add('hidden'); // Close modal on success
-                createForm.reset(); // Reset form fields
-                fetchReviews(); // Refresh the reviews list
+                createModal.classList.add('hidden');
+                createForm.reset();
+                fetchReviews();
             }
         } catch (error) {
             console.error('Error:', error);
@@ -44,46 +43,17 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Search functionality
-    document.getElementById('search-btn').addEventListener('click', async () => {
-        const searchQuery = document.getElementById('search').value;
-        try {
-            const response = await fetch(`../backend/handlers/review/fetchReview.php?search=${encodeURIComponent(searchQuery)}`);
-            const result = await response.json();
-
-            if (result.success) {
-                const reviewContainer = document.getElementById('course-container');
-                reviewContainer.innerHTML = ''; // Clear previous content
-
-                result.data.forEach(review => {
-                    const reviewElement = document.createElement('div');
-                    reviewElement.classList.add('review-item', 'border', 'p-4', 'mb-4', 'rounded');
-                    reviewElement.innerHTML = `
-                        <h4 class="font-semibold">${review.course_title} (${review.college})</h4>
-                        <p>${review.description}</p>
-                        <p class="text-gray-500">Rating: ${review.rating}/5</p>
-                        <p class="text-gray-400 text-sm">${new Date(review.created_at).toLocaleString()}</p>
-                        <button onclick="editReview(${review.id})" class="text-blue-500">Edit</button>
-                        <button onclick="deleteReview(${review.id})" class="text-red-500">Delete</button>
-                    `;
-                    reviewContainer.appendChild(reviewElement);
-                });
-            } else {
-                alert('No results found.');
-            }
-        } catch (error) {
-            alert('An error occurred while searching for reviews.');
-        }
+    document.getElementById('search-btn').addEventListener('click', () => {
+        currentPage = 1;
+        fetchReviews();
     });
 
-    // Function to fetch and display reviews
     async function fetchReviews() {
         try {
-            const response = await fetch('../backend/handlers/review/fetchReview.php');
+            const response = await fetch(`../backend/handlers/review/fetchReview.php?page=${currentPage}`);
             const result = await response.json();
             if (result.success) {
-                const reviewContainer = document.getElementById('course-container');
-                reviewContainer.innerHTML = ''; // Clear previous content
+                reviewContainer.innerHTML = '';
 
                 result.data.forEach(review => {
                     const reviewElement = document.createElement('div');
@@ -98,6 +68,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     `;
                     reviewContainer.appendChild(reviewElement);
                 });
+
+                createPagination(result.totalPages);
             } else {
                 alert('Failed to load reviews.');
             }
@@ -106,7 +78,22 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Edit Review Functionality
+    function createPagination(totalPages) {
+        const paginationContainer = document.getElementById('pagination');
+        paginationContainer.innerHTML = '';
+
+        for (let i = 1; i <= totalPages; i++) {
+            const button = document.createElement('button');
+            button.innerText = i;
+            button.classList.add('text-textDark', 'px-4', 'py-2', 'border', 'rounded', 'mx-1');
+            button.onclick = () => {
+                currentPage = i;
+                fetchReviews();
+            };
+            paginationContainer.appendChild(button);
+        }
+    }
+
     window.editReview = async function(id) {
         try {
             const response = await fetch(`../backend/handlers/review/fetchReview.php?id=${id}`);
@@ -119,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.getElementById('description').value = review.description;
                 document.getElementById('rating').value = review.rating;
                 createModal.classList.remove('hidden');
-                currentEditId = id; // Set the ID for editing
+                currentEditId = id;
             } else {
                 alert('Failed to load review for editing.');
             }
@@ -128,7 +115,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // Delete Review Functionality
     window.deleteReview = async function(id) {
         if (confirm('Are you sure you want to delete this review?')) {
             try {
@@ -143,7 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const result = await response.json();
                 alert(result.message);
                 if (result.success) {
-                    fetchReviews(); // Refresh the reviews list
+                    fetchReviews();
                 }
             } catch (error) {
                 alert('An error occurred while deleting the review.');
@@ -151,6 +137,5 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // Initial fetch of reviews
     fetchReviews();
 });
