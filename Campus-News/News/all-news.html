@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>All News - Campus News</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <h1 class="text-3xl font-bold text-white text-center py-4">All Campus News</h1>
+
+  <div class="main-container">
+    <div class="left-panel" style="flex: 1 1 100%;">
+      <div id="all-news-list" class="flex flex-wrap gap-6 justify-start"></div>
+    </div>
+  </div>
+
+  <script>
+    async function fetchAllNews() {
+      try {
+        const res = await fetch('../PHP/API/news.php');
+        const allNews = await res.json();
+
+        const container = document.getElementById('all-news-list');
+        container.innerHTML = '';
+
+        allNews.forEach(news => {
+          const link = document.createElement('a');
+          link.href = `template.html?id=${news.id}`;
+          link.target = '_blank';
+          link.style.textDecoration = 'none';
+
+          const card = document.createElement('div');
+          card.className = 'News-card';
+          card.innerHTML = `
+            <img src="${news.image.startsWith('data:') ? news.image : '../' + news.image}" id="img2">
+            <p>${news.title}</p>
+          `;
+
+          link.appendChild(card);
+          container.appendChild(link);
+        });
+      } catch (err) {
+        document.body.innerHTML = `
+          <h2 style="color:white; background:#9C9FE5; padding:1rem;">All Campus News</h2>
+          <p style="color:red;">Failed to load news: ${err.message}</p>
+        `;
+      }
+    }
+
+    fetchAllNews();
+  </script>
+</body>
+</html>
