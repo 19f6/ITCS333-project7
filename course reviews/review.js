@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const createButton = document.getElementById('create-review-btn');
     const createModal = document.getElementById('create-course-modal');
     const closeModalButton = document.getElementById('close-modal');
+    const cancelModalButton = document.getElementById('cancel-modal'); // Ensure this ID matches your HTML
     const createForm = document.getElementById('create-form');
     const reviewContainer = document.getElementById('course-container');
     let currentEditId = null;
@@ -14,6 +15,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     closeModalButton.addEventListener('click', () => {
         createModal.classList.add('hidden');
+    });
+
+    // Cancel button functionality
+    cancelModalButton.addEventListener('click', () => {
+        createModal.classList.add('hidden'); // Hide the modal
+        createForm.reset(); // Reset the form fields
     });
 
     createForm.addEventListener('submit', async (event) => {
