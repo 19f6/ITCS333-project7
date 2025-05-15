@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus News</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <h1 class="text-3xl font-bold text-white text-center py-4">Campus News</h1>
+    <div class="nav-bar"></div>
+
+    <div class="main-container">
+        <div class="left-panel">
+            <!-- Filteration -->
+            <div class="filter-bar">
+                <input type="text" id="search" placeholder="SEARCH NEWS">
+                <select id="filter-news">
+                    <option value="">Browse</option>
+                    <option value="Recent News">Recent News</option>
+                </select>
+                <select id="faculty">
+                    <option value="">Subject Area</option>
+                    <option value="Business">Business</option>
+                    <option value="Engineering">Engineering</option>
+                    <option value="Technology">Technology</option>
+                    <option value="Art">Art</option>
+                    <option value="Sport">Sport</option>
+                    <option value="Law">Law</option>
+                </select>
+                <button id="create-news" class="but1">CREATE</button>
+            </div>
+
+            <div id="news-form-panel" class="floating-form hidden fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 z-50 flex items-center justify-center">
+                <div class="bg-white rounded-lg shadow-xl p-6 w-full max-w-xl relative">
+                    <button id="close-form" class="absolute top-2 right-2 text-gray-500 hover:text-black text-2xl">&times;</button>
+                    <h2 class="text-xl font-bold mb-4">Create/Edit News</h2>
+                    <input type="file" id="news-image" accept="image/*" class="block w-full mb-2 border p-2">
+                    <input type="text" id="news-title" placeholder="Short Title" class="block w-full mb-2 border p-2">
+                    <textarea id="news-body" placeholder="Content" class="block w-full mb-2 border p-2"></textarea>
+                    <select id="news-category" class="block w-full mb-2 border p-2">
+                        <option value="">Select Category</option>
+                        <option value="Business">Business</option>
+                        <option value="Engineering">Engineering</option>
+                        <option value="Technology">Technology</option>
+                        <option value="Art">Art</option>
+                        <option value="Sport">Sport</option>
+                        <option value="Law">Law</option>
+                    </select>
+                    <input type="text" id="news-tags" placeholder="Tags (comma-separated)" class="block w-full mb-4 border p-2">
+                    <img id="image-preview" class="mb-4 w-full max-h-48 object-cover rounded" src="" alt="Preview" />
+                    <button id="publish-news" class="but1 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">Publish</button>
+                </div>
+            </div>
+
+            <!-- Static Section -->
+            <div id="groups-container">
+                <div class="main-panel">
+                    <img src="pictures/pic1.png" id="img1">
+                    <h3>Vision, Mission and Values</h3>
+                    <p>The center should play a role in making the university a prominent institution recognized for national and international quality standards in teaching, scientific research, and community engagement.</p>
+                </div>
+                <div class="bottom-panel">
+                    <div class="panel-header">
+                        <h3 id="title">News and Research</h3>
+                        <button id="view-all-news" class="but1">View all News</button>
+                    </div>
+                    <div class="Scroll-wrapper">
+                        <div class="News-scroller">
+                            <!-- JS will inject dynamic cards here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Panel Events -->
+        <div class="right-panel">
+            <a href="News/Events1.html">
+                <div class="Events-card">
+                    <img src="pictures/pic7.png">
+                    <div class="Events-card-content">
+                        <p>The Department of Information Systems, College of Information Technology, hosted a student- alumni session to encourage discussions on career paths, professional relationships, and future goals.</p>
+                        <span class="tag">Technology</span>
+                    </div>
+                </div>
+            </a>
+            <a href="News/Events2.html">
+                <div class="Events-card">
+                    <img src="pictures/pic8.png">
+                    <div class="Events-card-content">
+                        <p>Emirati astronauts Mohammad Al Mulla and Nora Al Matrooshi shared their experiences in space during a virtual interactive session at UOB.</p>
+                        <span class="tag">Technology</span>
+                    </div>
+                </div>
+            </a>
+            <a href="News/Events3.html">
+                <div class="Events-card">
+                    <img src="pictures/pic9.png">
+                    <div class="Events-card-content">
+                        <p>Students from the Islamic Banking Department at UOB attended a seminar on “Murabaha and Tawarruq in banking”.</p>
+                        <span class="tag">Technology</span>
+                    </div>
+                </div>
+            </a>
+            <a href="News/Events4.html">
+                <div class="Events-card">
+                    <img src="pictures/pic12.png">
+                    <div class="Events-card-content">
+                        <p>The University of Bahrain and CERN organized a workshop titled “Quantum computing for sustainable development”.</p>
+                        <span class="tag">Technology</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>
