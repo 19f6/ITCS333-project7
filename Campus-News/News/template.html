@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Campus News</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    #news-body p {
+      margin-bottom: 0.75rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="header">
+      <h2 id="news-title">Loading...</h2>
+    </div>
+    <div class="card">
+      <img src="" id="card-img" class="card-img" alt="News Image" />
+      <div class="card-text" id="news-body"></div>
+    </div>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get('id');
+
+    async function fetchNews() {
+      try {
+        const res = await fetch(`../PHP/API/news.php?id=${id}`);
+        const data = await res.json();
+
+        if (!data || !data.title) {
+          throw new Error("News not found");
+        }
+
+        document.getElementById('news-title').textContent = data.title;
+        document.getElementById('card-img').src = data.image.startsWith('data:')
+          ? data.image
+          : `../${data.image}`;
+
+        const isHtml = data.body.trim().startsWith('<p') || data.body.includes('</p>');
+        const bodyContent = isHtml
+          ? data.body
+          : data.body
+              .split('\n')
+              .map(line => `<p>${line.trim()}</p>`)
+              .join('');
+
+        document.getElementById('news-body').innerHTML =
+          bodyContent + `<p style="margin-top:1rem; color:gray;">Category: ${data.category}</p>`;
+      } catch (err) {
+        document.getElementById('news-title').textContent = "Error Loading News";
+        document.getElementById('news-body').innerHTML = "<p>Something went wrong.</p>";
+        document.getElementById('card-img').style.display = "none";
+      }
+    }
+
+    fetchNews();
+  </script>
+</body>
+</html>
