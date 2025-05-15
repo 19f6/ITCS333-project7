@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     createButton.addEventListener('click', () => {
         createModal.classList.remove('hidden');
-        currentEditId = null;
+        currentEditId = null; // Reset for new review
     });
 
     closeModalButton.addEventListener('click', () => {
@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     createForm.addEventListener('submit', async (event) => {
         event.preventDefault();
         const formData = new FormData(createForm);
+
         if (currentEditId) {
             formData.append('id', currentEditId);
         }
@@ -28,6 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 method: 'POST',
                 body: formData
             });
+
             const result = await response.json();
             alert(result.message);
             if (result.success) {
@@ -90,13 +92,48 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    window.editReview = async function(id) {
-        // Edit review logic
+    window.editReview = async function (id) {
+        try {
+            const response = await fetch(`../backend/handlers/review/fetchReview.php?id=${id}`);
+            const result = await response.json();
+
+            if (result.success) {
+                const review = result.data;
+                document.getElementById('course-name').value = review.course_title;
+                document.getElementById('college').value = review.college;
+                document.getElementById('description').value = review.description;
+                document.getElementById('rating').value = review.rating;
+                createModal.classList.remove('hidden');
+                currentEditId = id; // Set the ID for editing
+            } else {
+                alert('Failed to load review for editing.');
+            }
+        } catch (error) {
+            alert('An error occurred while fetching the review.');
+        }
     };
 
-    window.deleteReview = async function(id) {
-        // Delete review logic
+    window.deleteReview = async function (id) {
+        if (confirm('Are you sure you want to delete this review?')) {
+            try {
+                const response = await fetch('../backend/handlers/review/deleteReview.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ id })
+                });
+
+                const result = await response.json();
+                alert(result.message);
+                if (result.success) {
+                    fetchReviews(); // Refresh the reviews
+                }
+            } catch (error) {
+                alert('An error occurred while deleting the review.');
+            }
+        }
     };
 
-    fetchReviews();
+    fetchReviews(); // Initial fetch
 });
